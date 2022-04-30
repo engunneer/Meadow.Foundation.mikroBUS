@@ -1,0 +1,12 @@
+<Project Sdk="Meadow.Sdk/1.1.0">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <OutputType>Library</OutputType>
+    <AssemblyName>MeadowLibrary</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Meadow.Foundation" Version="0.*" />
+    <PackageReference Include="Meadow.Foundation.Displays.MicroGraphics" Version="0.9.48" />
+    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Is31fl3731" Version="0.1.43" />
+  </ItemGroup>
+</Project>
