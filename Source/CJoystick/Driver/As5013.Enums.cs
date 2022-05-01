@@ -1,6 +1,6 @@
 ﻿namespace Meadow.Foundation.Sensors.Hid
 {
-    public partial class N50p105
+    public partial class As5013
     {
         /// <summary>
         /// Valid addresses for the sensor.

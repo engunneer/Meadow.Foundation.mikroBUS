@@ -19,7 +19,7 @@ namespace CButtonG_Sample
             joystick.Updated += Joystick_Updated;
         }
 
-        private void Joystick_Updated(object sender, ChangeResult<Meadow.Peripherals.Sensors.Hid.AnalogJoystickPosition> e)
+        private void Joystick_Updated(object sender, IChangeResult<Meadow.Peripherals.Sensors.Hid.AnalogJoystickPosition> e)
         {
             Console.WriteLine($"{e.New.Horizontal}, {e.New.Vertical}");
         }

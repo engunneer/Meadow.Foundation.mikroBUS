@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Meadow.Foundation.Sensors.Hid
 {
-    public partial class N50p105 
+    public partial class As5013 
         : SensorBase<AnalogJoystickPosition>, IAnalogJoystick
     {
+        public I2cBusSpeed DefaultSpeed => I2cBusSpeed.FastPlus;
+
         public bool IsHorizontalInverted { get; set; }
         public bool IsVerticalInverted { get; set; }
     
@@ -16,7 +18,7 @@ namespace Meadow.Foundation.Sensors.Hid
 
         readonly II2cPeripheral i2CPeripheral;
 
-        public N50p105(II2cBus i2cBus, byte address = (byte)Addresses.Default)
+        public As5013(II2cBus i2cBus, byte address = (byte)Addresses.Default)
         {
             i2CPeripheral = new I2cPeripheral(i2cBus, address);
         }
@@ -57,8 +59,11 @@ namespace Meadow.Foundation.Sensors.Hid
 
                 Task.Run(() =>
                 {
-                    Update();
-                    Thread.Sleep((int)UpdateInterval.TotalMilliseconds);
+                    while (!SamplingTokenSource.IsCancellationRequested)
+                    {
+                        Update();
+                        Thread.Sleep((int)UpdateInterval.TotalMilliseconds);
+                    }
                 }, SamplingTokenSource.Token);
             }
         }
@@ -129,8 +134,9 @@ namespace Meadow.Foundation.Sensors.Hid
 
         /// <summary>
         /// Invert the channel voltage function
+        /// Set to invert the magnet polarity
         /// </summary>
-        void InvertSpinning()
+        public void InvertSpinning()
         {
             i2CPeripheral.WriteRegister((byte)Register.JOYSTICK_CONTROL2, (byte)Command.JOYSTICK_INVERT_SPINING_CMD);
         }
@@ -142,10 +148,8 @@ namespace Meadow.Foundation.Sensors.Hid
             sbyte yValue = (sbyte)i2CPeripheral.ReadRegister((byte)Register.JOYSTICK_Y_RES_INT);
             Thread.Sleep(1);
 
-            //Console.WriteLine($"{xValue}, {yValue}");
-
-            float newX = (xValue / 128.0f) * (IsHorizontalInverted ? -1 : 1);
-            float newY = (yValue / 128.0f) * (IsVerticalInverted ? -1 : 1);
+            float newX = xValue / 128.0f * (IsHorizontalInverted ? -1 : 1);
+            float newY = yValue / 128.0f * (IsVerticalInverted ? -1 : 1);
 
             // capture history
             var oldPosition = Position;
