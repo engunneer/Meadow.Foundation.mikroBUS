@@ -18,10 +18,9 @@ namespace CButtonG_Sample
             ledButton.StartPulse(TimeSpan.FromSeconds(2), 0.75f, 0);
             ledButton.Clicked += (s, e) =>
             {
+                Console.WriteLine("Button clicked");
                 ledButton.IsOn = !ledButton.IsOn;
             };
-
-
         }
     }
 }
