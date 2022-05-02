@@ -1,7 +1,7 @@
 ﻿using Meadow;
 using System.Threading;
 
-namespace C16x9G_Sample
+namespace C8x8_Sample
 {
     internal class Program
     {

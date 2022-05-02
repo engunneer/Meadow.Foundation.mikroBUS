@@ -8,9 +8,9 @@ using System;
 namespace Meadow.Foundation.mikroBUS
 {
     /// <summary>
-    /// Represents a mikroBUS 16x9 G (green) Click board
+    /// Represents a mikroBUS 16x9 Click board
     /// </summary>
-    public class C16x9G : IGraphicsDisplay
+    public class C16x9 : IGraphicsDisplay
     {
         /// <summary>
         /// Is31fl3731 object to manage the leds
@@ -61,7 +61,7 @@ namespace Meadow.Foundation.mikroBUS
         /// <param name="onPort">On/Off port</param>
         /// <param name="i2cBus">I2C bus</param>
         /// <param name="address">I2C address</param>
-        public C16x9G(IDigitalOutputPort onOffPort, II2cBus i2cBus, byte address = (byte)Is31fl3731.Addresses.Default)
+        public C16x9(IDigitalOutputPort onOffPort, II2cBus i2cBus, byte address = (byte)Is31fl3731.Addresses.Default)
         {
             frame = 0;
 
@@ -89,7 +89,7 @@ namespace Meadow.Foundation.mikroBUS
         /// <param name="device">Meadow device controller</param>
         /// <param name="onOffPin">IO pin to controller display on/off state</param>
         /// <param name="i2cBus">I2C bus</param>
-        public C16x9G(IMeadowDevice device, IPin onOffPin, II2cBus i2cBus) :
+        public C16x9(IMeadowDevice device, IPin onOffPin, II2cBus i2cBus) :
             this(device.CreateDigitalOutputPort(onOffPin), i2cBus, (byte)Is31fl3731.Addresses.Default)
         {
         }

@@ -11,6 +11,6 @@
     <PackageReference Include="Meadow.Foundation.Displays.MicroGraphics" Version="0.9.48" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Driver\C16x9G.csproj" />
+    <ProjectReference Include="..\..\Driver\C8x8.csproj" />
   </ItemGroup>
 </Project>

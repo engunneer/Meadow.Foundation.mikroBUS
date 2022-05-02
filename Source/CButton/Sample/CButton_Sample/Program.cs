@@ -1,7 +1,7 @@
 ﻿using Meadow;
 using System.Threading;
 
-namespace C8x8Y_Sample
+namespace CButton_Sample
 {
     internal class Program
     {

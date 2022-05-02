@@ -4,21 +4,21 @@ using Meadow.Foundation.Graphics;
 using Meadow.Foundation.mikroBUS;
 using System;
 
-namespace C8x8Y_Sample
+namespace C16x9_Sample
 {
-    // Change F7MicroV2 to F7Micro for V1.x boards
+    // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
     public class MeadowApp : App<F7MicroV2, MeadowApp>
     {
         public MeadowApp()
         {
             Console.WriteLine("Initializing ...");
 
-            var c8x8Y = new C8x8Y(Device, Device.CreateSpiBus(), Device.Pins.D02);
-            c8x8Y.IgnoreOutOfBoundsPixels = true;
+            var c16x9 = new C16x9(Device, Device.Pins.D14, Device.CreateI2cBus(Meadow.Hardware.I2cBusSpeed.Standard));
+            c16x9.IgnoreOutOfBoundsPixels = true;
 
-            c8x8Y.Clear();
+            c16x9.Clear();
 
-            var graphics = new MicroGraphics(c8x8Y)
+            var graphics = new MicroGraphics(c16x9)
             {
                 Rotation = RotationType._180Degrees
             };

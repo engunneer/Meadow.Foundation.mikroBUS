@@ -10,7 +10,7 @@ namespace Meadow.Foundation.mikroBUS
     /// <summary>
     /// Represents a mikroBUS Button G (green) Click board
     /// </summary>
-    public class CButtonG : PushButton, IPwmLed
+    public class CButton : PushButton, IPwmLed
     {
         /// <summary>
         /// Gets or sets a value indicating whether the LED is on.
@@ -33,13 +33,13 @@ namespace Meadow.Foundation.mikroBUS
 
         readonly IPwmLed pwmLed;
 
-        public CButtonG(IMeadowDevice device, IPin ledPin, IPin buttonPin, ResistorMode resistorMode = ResistorMode.InternalPullUp) 
+        public CButton(IMeadowDevice device, IPin ledPin, IPin buttonPin, ResistorMode resistorMode = ResistorMode.InternalPullUp) 
             : base(device, buttonPin, resistorMode)
         {
             pwmLed = new PwmLed(device, ledPin, new Units.Voltage(TypicalForwardVoltage.Green));
         }
 
-        public CButtonG(IPwmPort ledPwmPort, IDigitalInputPort buttonInterruptPort)
+        public CButton(IPwmPort ledPwmPort, IDigitalInputPort buttonInterruptPort)
             : base(buttonInterruptPort)
         {
             pwmLed = new PwmLed(ledPwmPort, new Units.Voltage(TypicalForwardVoltage.Green));
