@@ -2,11 +2,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <OutputType>Library</OutputType>
-    <AssemblyName>C16x9G</AssemblyName>
+    <AssemblyName>C8x8Y</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Meadow.Foundation" Version="0.*" />
+    <PackageReference Include="Meadow.Foundation.Displays.Max7219" Version="0.1.50" />
     <PackageReference Include="Meadow.Foundation.Displays.MicroGraphics" Version="0.9.48" />
-    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Is31fl3731" Version="0.1.43" />
   </ItemGroup>
 </Project>

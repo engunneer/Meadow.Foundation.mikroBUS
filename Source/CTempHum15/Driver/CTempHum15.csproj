@@ -2,11 +2,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <OutputType>Library</OutputType>
-    <AssemblyName>C16x9G</AssemblyName>
+    <AssemblyName>CTempHum15</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Meadow.Foundation" Version="0.*" />
     <PackageReference Include="Meadow.Foundation.Displays.MicroGraphics" Version="0.9.48" />
     <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Is31fl3731" Version="0.1.43" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\meadow.foundation\Source\Meadow.Foundation.Peripherals\Sensors.Atmospheric.Sht4x\Driver\Sensors.Atmospheric.Sht4x.csproj" />
   </ItemGroup>
 </Project>

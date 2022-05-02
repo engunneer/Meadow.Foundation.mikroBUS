@@ -89,9 +89,8 @@ namespace Meadow.Foundation.mikroBUS
         /// <param name="device">Meadow device controller</param>
         /// <param name="onOffPin">IO pin to controller display on/off state</param>
         /// <param name="i2cBus">I2C bus</param>
-        /// <param name="address">I2C address</param>
-        public C16x9G(IMeadowDevice device, IPin onOffPin, II2cBus i2cBus, byte address = (byte)Is31fl3731.Addresses.Default) :
-            this(device.CreateDigitalOutputPort(onOffPin), i2cBus, address)
+        public C16x9G(IMeadowDevice device, IPin onOffPin, II2cBus i2cBus) :
+            this(device.CreateDigitalOutputPort(onOffPin), i2cBus, (byte)Is31fl3731.Addresses.Default)
         {
         }
 
@@ -136,27 +135,6 @@ namespace Meadow.Foundation.mikroBUS
         {
             DrawPixel(x, y, colored ? Color.White : Color.Black);
         }
-
-        /*
-        /// <summary>
-        /// Turn on LED with the specified brightness on (x,y) coordinates
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="brightness"></param>
-        public void DrawPixel(int x, int y, byte brightness)
-        {
-            if (IgnoreOutOfBoundsPixels)
-            {
-                if (x < 0 || x >= Width || y < 0 || y >= Height)
-                { return; }
-            }
-
-            displayBuffer.SetPixel(x, y, color);
-
-            iS31FL3731.SetLedPwm(Frame, (byte)(x + y * Width), brightness);
-        }
-        */
 
         /// <summary>
         /// Invert the color of the pixel at the given location

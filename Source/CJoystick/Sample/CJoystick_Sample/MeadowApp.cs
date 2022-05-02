@@ -12,11 +12,17 @@ namespace CButtonG_Sample
         {
             Console.WriteLine("Initializing ...");
 
-            var joystick = new CJoystick(Device.CreateI2cBus());
+            var joystick = new CJoystick(Device, Device.Pins.D14, Device.CreateI2cBus());
 
             joystick.StartUpdating(TimeSpan.FromMilliseconds(20));
 
             joystick.Updated += Joystick_Updated;
+            joystick.Clicked += Joystick_Clicked;
+        }
+
+        private void Joystick_Clicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Center clicked");
         }
 
         private void Joystick_Updated(object sender, IChangeResult<Meadow.Peripherals.Sensors.Hid.AnalogJoystickPosition> e)
