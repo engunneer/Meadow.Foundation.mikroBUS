@@ -12,6 +12,8 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Buttons
     /// </summary>
     public class CButton : PushButton, IPwmLed
     {
+        readonly IPwmLed pwmLed;
+
         /// <summary>
         /// Gets or sets a value indicating whether the LED is on.
         /// </summary>
@@ -30,8 +32,6 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Buttons
             get => pwmLed.Brightness;
             set => pwmLed.Brightness = value;
         }
-
-        readonly IPwmLed pwmLed;
 
         /// <summary>
         /// Creates a new CButton object

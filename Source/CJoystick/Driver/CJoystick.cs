@@ -1,9 +1,9 @@
-﻿using System;
-using Meadow.Devices;
+﻿using Meadow.Devices;
 using Meadow.Foundation.Sensors.Buttons;
 using Meadow.Foundation.Sensors.Hid;
 using Meadow.Hardware;
 using Meadow.Peripherals.Sensors.Buttons;
+using System;
 
 namespace Meadow.Foundation.mikroBUS.Sensors.Hid
 {

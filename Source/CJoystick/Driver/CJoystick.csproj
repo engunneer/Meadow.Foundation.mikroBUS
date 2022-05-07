@@ -6,17 +6,17 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <OutputType>Library</OutputType>
     <AssemblyName>CJoystick</AssemblyName>
-	<Company>Wilderness Labs, Inc</Company>
-	<PackageProjectUrl>http://developer.wildernesslabs.co/Meadow/Meadow.Foundation/</PackageProjectUrl>
-	<PackageId>Meadow.Foundation.mikroBUS.Sensors.Hid.CJoystick</PackageId>
-	<RepositoryUrl>https://github.com/WildernessLabs/Meadow.Foundation</RepositoryUrl>
-	<PackageTags>Meadow, Meadow.Foundation, MikroBus, Mikroe, MikroElectronika, analog, joystick</PackageTags>
-	<Version>0.1.0</Version>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<Description>MikroElectronika I2C Joystick MikroBus click board</Description>
+    <Company>Wilderness Labs, Inc</Company>
+    <PackageProjectUrl>http://developer.wildernesslabs.co/Meadow/Meadow.Foundation/</PackageProjectUrl>
+    <PackageId>Meadow.Foundation.mikroBUS.Sensors.Hid.CJoystick</PackageId>
+    <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Foundation</RepositoryUrl>
+    <PackageTags>Meadow, Meadow.Foundation, MikroBus, Mikroe, MikroElectronika, analog, joystick</PackageTags>
+    <Version>0.1.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>MikroElectronika I2C Joystick MikroBus click board</Description>
   </PropertyGroup>
   <ItemGroup>
-	<None Include="..\..\icon.png" Pack="true" PackagePath="" />
+  <None Include="..\..\icon.png" Pack="true" PackagePath="" />
     <ProjectReference Include="..\..\..\..\meadow.foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
     <ProjectReference Include="..\..\..\..\meadow.foundation\Source\Meadow.Foundation.Peripherals\Sensors.Hid.As5013\Driver\Sensors.Hid.As5013.csproj" />
   </ItemGroup>

@@ -8,6 +8,10 @@ namespace Meadow.Foundation.mikroBUS
     /// </summary>
     public class CTempHum15 : Sht4x
     {
+        /// <summary>
+        /// Creates a CTempHum15 driver
+        /// </summary>
+        /// <param name="i2cBus"></param>
         public CTempHum15(II2cBus i2cBus) : base(i2cBus, (byte)Addresses.Default)
         {
         }

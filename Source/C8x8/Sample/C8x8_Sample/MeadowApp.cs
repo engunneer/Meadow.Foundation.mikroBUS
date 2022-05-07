@@ -7,13 +7,17 @@ using System;
 namespace C8x8_Sample
 {
     // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
-    public class MeadowApp : App<F7MicroV2, MeadowApp>
+    public class MeadowApp : App<F7FeatherV2, MeadowApp>
     {
+        //<!=SNIP=>
+
+        C8x8 c8x8;
+
         public MeadowApp()
         {
             Console.WriteLine("Initializing ...");
 
-            var c8x8 = new C8x8(Device, Device.CreateSpiBus(), Device.Pins.D02);
+            c8x8 = new C8x8(Device, Device.CreateSpiBus(), Device.Pins.D02);
             c8x8.IgnoreOutOfBoundsPixels = true;
 
             c8x8.Clear();
@@ -36,5 +40,7 @@ namespace C8x8_Sample
                 }
             }
         }
+
+        //<!=SNOP=>
     }
 }

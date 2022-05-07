@@ -182,7 +182,6 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="fillColor"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void Fill(int x, int y, int width, int height, Color fillColor)
         {
             displayBuffer.Fill(fillColor, x, y, width, height);

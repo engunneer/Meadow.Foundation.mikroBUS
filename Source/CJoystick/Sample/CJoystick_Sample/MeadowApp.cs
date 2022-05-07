@@ -9,11 +9,15 @@ namespace CJoystick_Sample
     // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
     public class MeadowApp : App<F7FeatherV2, MeadowApp>
     {
+        //<!=SNIP=>
+
+        CJoystick joystick;
+
         public MeadowApp()
         {
             Console.WriteLine("Initializing ...");
 
-            var joystick = new CJoystick(Device, Device.Pins.A02, Device.CreateI2cBus());
+            joystick = new CJoystick(Device, Device.Pins.A02, Device.CreateI2cBus());
 
             //loop and read digital position 
             for (int i = 0; i < 100; i++)
@@ -41,5 +45,7 @@ namespace CJoystick_Sample
         {
             Console.WriteLine($"{e.New.Horizontal}, {e.New.Vertical}");
         }
+
+        //<!=SNOP=>
     }
 }
