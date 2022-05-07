@@ -1,11 +1,11 @@
-﻿using System;
-using Meadow.Devices;
+﻿using Meadow.Devices;
 using Meadow.Foundation.Sensors.Buttons;
 using Meadow.Foundation.Sensors.Hid;
 using Meadow.Hardware;
 using Meadow.Peripherals.Sensors.Buttons;
+using System;
 
-namespace Meadow.Foundation.mikroBUS
+namespace Meadow.Foundation.mikroBUS.Sensors.Hid
 {
     /// <summary>
     /// Represents a mikroBUS Joystick Click board
@@ -24,10 +24,10 @@ namespace Meadow.Foundation.mikroBUS
         }
 
         /// <summary>
-        /// Returns the current  state of the center push button 
+        /// Returns the raw state of the center push button 
         /// If pressed - returns true, otherwise false
         /// </summary>
-        public bool State => button.State;
+        public bool State => !button.State;
 
         /// <summary>
         /// Raised when a press starts (the button is pushed down; circuit is closed).

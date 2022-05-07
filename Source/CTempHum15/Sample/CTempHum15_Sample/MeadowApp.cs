@@ -1,6 +1,6 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation.Sensors.Atmospheric;
+using Meadow.Foundation.mikroBUS;
 using System;
 using System.Threading.Tasks;
 
@@ -11,15 +11,15 @@ namespace CTempHum15_Sample
     {
         //<!=SNIP=>
 
-        Sht4x sensor;
+        CTempHum15 cTempHum15;
 
         public MeadowApp()
         {
             Console.WriteLine("Initializing...");
 
-            sensor = new Sht4x(Device.CreateI2cBus());
+            cTempHum15 = new CTempHum15(Device.CreateI2cBus());
 
-            var consumer = Sht4x.CreateObserver(
+            var consumer = CTempHum15.CreateObserver(
                 handler: result =>
                 {
                     Console.WriteLine($"Observer: Temp changed by threshold; new temp: {result.New.Temperature?.Celsius:N2}C, old: {result.Old?.Temperature?.Celsius:N2}C");
@@ -38,9 +38,9 @@ namespace CTempHum15_Sample
                     return false;
                 }
             );
-            sensor.Subscribe(consumer);
+            cTempHum15.Subscribe(consumer);
 
-            sensor.Updated += (sender, result) =>
+            cTempHum15.Updated += (sender, result) =>
             {
                 Console.WriteLine($"  Temperature: {result.New.Temperature?.Celsius:N2}C");
                 Console.WriteLine($"  Relative Humidity: {result.New.Humidity:N2}%");
@@ -48,12 +48,12 @@ namespace CTempHum15_Sample
 
             ReadConditions().Wait();
 
-            sensor.StartUpdating(TimeSpan.FromSeconds(1));
+            cTempHum15.StartUpdating(TimeSpan.FromSeconds(1));
         }
 
         async Task ReadConditions()
         {
-            var conditions = await sensor.Read();
+            var conditions = await cTempHum15.Read();
             Console.WriteLine("Initial Readings:");
             Console.WriteLine($"  Temperature: {conditions.Temperature?.Celsius:N2}C");
             Console.WriteLine($"  Relative Humidity: {conditions.Humidity?.Percent:N2}%");

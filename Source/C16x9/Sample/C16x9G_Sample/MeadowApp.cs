@@ -1,19 +1,23 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.Graphics;
-using Meadow.Foundation.mikroBUS;
+using Meadow.Foundation.mikroBUS.Displays;
 using System;
 
 namespace C16x9_Sample
 {
     // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
-    public class MeadowApp : App<F7MicroV2, MeadowApp>
+    public class MeadowApp : App<F7FeatherV2, MeadowApp>
     {
+        //<!=SNIP=>
+
+        C16x9 c16x9;
+
         public MeadowApp()
         {
             Console.WriteLine("Initializing ...");
 
-            var c16x9 = new C16x9(Device, Device.Pins.D14, Device.CreateI2cBus(Meadow.Hardware.I2cBusSpeed.Standard));
+            c16x9 = new C16x9(Device, Device.Pins.D14, Device.CreateI2cBus(Meadow.Hardware.I2cBusSpeed.Standard));
             c16x9.IgnoreOutOfBoundsPixels = true;
 
             c16x9.Clear();
@@ -36,5 +40,7 @@ namespace C16x9_Sample
                 }
             }
         }
+
+        //<!=SNOP=>
     }
 }

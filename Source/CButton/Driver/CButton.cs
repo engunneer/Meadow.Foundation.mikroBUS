@@ -5,13 +5,15 @@ using Meadow.Hardware;
 using Meadow.Peripherals.Leds;
 using System;
 
-namespace Meadow.Foundation.mikroBUS
+namespace Meadow.Foundation.mikroBUS.Sensors.Buttons
 {
     /// <summary>
-    /// Represents a mikroBUS Button G (green) Click board
+    /// Represents a mikroBUS Button G,R,Y Click board
     /// </summary>
     public class CButton : PushButton, IPwmLed
     {
+        readonly IPwmLed pwmLed;
+
         /// <summary>
         /// Gets or sets a value indicating whether the LED is on.
         /// </summary>
@@ -31,14 +33,23 @@ namespace Meadow.Foundation.mikroBUS
             set => pwmLed.Brightness = value;
         }
 
-        readonly IPwmLed pwmLed;
-
-        public CButton(IMeadowDevice device, IPin ledPin, IPin buttonPin, ResistorMode resistorMode = ResistorMode.InternalPullUp) 
-            : base(device, buttonPin, resistorMode)
+        /// <summary>
+        /// Creates a new CButton object
+        /// </summary>
+        /// <param name="device">Meadow device</param>
+        /// <param name="ledPin">Led pin</param>
+        /// <param name="buttonPin">Button pin</param>
+        public CButton(IMeadowDevice device, IPin ledPin, IPin buttonPin) 
+            : base(device, buttonPin, ResistorMode.InternalPullUp)
         {
             pwmLed = new PwmLed(device, ledPin, new Units.Voltage(TypicalForwardVoltage.Green));
         }
 
+        /// <summary>
+        /// Creates a new CButton object
+        /// </summary>
+        /// <param name="ledPwmPort">Led PWM port</param>
+        /// <param name="buttonInterruptPort">Button interrupt port</param>
         public CButton(IPwmPort ledPwmPort, IDigitalInputPort buttonInterruptPort)
             : base(buttonInterruptPort)
         {
