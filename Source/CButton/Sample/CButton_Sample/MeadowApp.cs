@@ -1,6 +1,6 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation.mikroBUS;
+using Meadow.Foundation.mikroBUS.Sensors.Buttons;
 using System;
 
 namespace CButton_Sample

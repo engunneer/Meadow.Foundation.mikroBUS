@@ -1,6 +1,6 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation.Sensors.Atmospheric;
+using Meadow.Foundation.mikroBUS;
 using System;
 using System.Threading.Tasks;
 
@@ -11,15 +11,15 @@ namespace CTempHum15_Sample
     {
         //<!=SNIP=>
 
-        Sht4x sensor;
+        CTempHum15 sensor;
 
         public MeadowApp()
         {
             Console.WriteLine("Initializing...");
 
-            sensor = new Sht4x(Device.CreateI2cBus());
+            sensor = new CTempHum15(Device.CreateI2cBus());
 
-            var consumer = Sht4x.CreateObserver(
+            var consumer = CTempHum15.CreateObserver(
                 handler: result =>
                 {
                     Console.WriteLine($"Observer: Temp changed by threshold; new temp: {result.New.Temperature?.Celsius:N2}C, old: {result.Old?.Temperature?.Celsius:N2}C");

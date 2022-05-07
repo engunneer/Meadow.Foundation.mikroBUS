@@ -1,9 +1,10 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation.mikroBUS;
+using Meadow.Foundation.mikroBUS.Sensors.Hid;
 using System;
+using System.Threading;
 
-namespace CButtonG_Sample
+namespace CJoystick_Sample
 {
     // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
     public class MeadowApp : App<F7FeatherV2, MeadowApp>
@@ -12,10 +13,21 @@ namespace CButtonG_Sample
         {
             Console.WriteLine("Initializing ...");
 
-            var joystick = new CJoystick(Device, Device.Pins.D14, Device.CreateI2cBus());
+            var joystick = new CJoystick(Device, Device.Pins.A02, Device.CreateI2cBus());
 
-            joystick.StartUpdating(TimeSpan.FromMilliseconds(20));
+            //loop and read digital position 
+            for (int i = 0; i < 100; i++)
+            {
+                Console.WriteLine($"Position: {joystick.DigitalPosition}");
+                Console.WriteLine($"Pressed: {joystick.State}");
 
+                Thread.Sleep(50);
+            }
+
+            //start continous reading
+            joystick.StartUpdating(TimeSpan.FromMilliseconds(100));
+
+            //classic events
             joystick.Updated += Joystick_Updated;
             joystick.Clicked += Joystick_Clicked;
         }

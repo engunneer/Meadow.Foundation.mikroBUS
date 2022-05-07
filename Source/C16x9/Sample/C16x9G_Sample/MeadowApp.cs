@@ -1,7 +1,7 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.Graphics;
-using Meadow.Foundation.mikroBUS;
+using Meadow.Foundation.mikroBUS.Displays;
 using System;
 
 namespace C16x9_Sample

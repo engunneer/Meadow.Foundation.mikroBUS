@@ -5,7 +5,7 @@ using Meadow.Foundation.ICs.IOExpanders;
 using Meadow.Hardware;
 using System;
 
-namespace Meadow.Foundation.mikroBUS
+namespace Meadow.Foundation.mikroBUS.Displays
 {
     /// <summary>
     /// Represents a mikroBUS 16x9 Click board
@@ -58,7 +58,7 @@ namespace Meadow.Foundation.mikroBUS
         /// <summary>
         /// Creates a CharlieWing driver
         /// </summary>
-        /// <param name="onPort">On/Off port</param>
+        /// <param name="onOffPort">On/Off port</param>
         /// <param name="i2cBus">I2C bus</param>
         /// <param name="address">I2C address</param>
         public C16x9(IDigitalOutputPort onOffPort, II2cBus i2cBus, byte address = (byte)Is31fl3731.Addresses.Default)
