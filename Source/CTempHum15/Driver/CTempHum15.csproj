@@ -1,4 +1,4 @@
-﻿<Project Sdk="Meadow.Sdk/1.1.0">
+<Project Sdk="Meadow.Sdk/1.1.0">
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageIcon>icon.png</PackageIcon>
@@ -21,6 +21,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="" />
-    <ProjectReference Include="..\..\..\..\meadow.foundation\Source\Meadow.Foundation.Peripherals\Sensors.Atmospheric.Sht4x\Driver\Sensors.Atmospheric.Sht4x.csproj" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Sht4x" Version="0.*" />
   </ItemGroup>
 </Project>

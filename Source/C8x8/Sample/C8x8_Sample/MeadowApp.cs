@@ -17,14 +17,14 @@ namespace C8x8_Sample
         {
             Console.WriteLine("Initializing ...");
 
-            c8x8 = new C8x8(Device, Device.CreateSpiBus(), Device.Pins.D02);
+            c8x8 = new C8x8(Device, Device.CreateSpiBus(), Device.Pins.D14);
             c8x8.IgnoreOutOfBoundsPixels = true;
 
             c8x8.Clear();
 
             var graphics = new MicroGraphics(c8x8)
             {
-                Rotation = RotationType._180Degrees
+                Rotation = RotationType._270Degrees
             };
             graphics.CurrentFont = new Font4x8();
 
