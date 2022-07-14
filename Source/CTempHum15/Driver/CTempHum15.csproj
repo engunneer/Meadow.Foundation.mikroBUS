@@ -16,11 +16,10 @@
     <Description>MikroElectronika I2C Temp and Hum 15 temperature and humidity click board</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.Displays.MicroGraphics" Version="0.*" />
-    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Is31fl3731" Version="0.*" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="" />
+    <!--<PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Sht4x" Version="0.*" />-->
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\icon.png" Pack="true" PackagePath="" />
-    <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Sht4x" Version="0.*" />
+    <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Atmospheric.Sht4x\Driver\Sensors.Atmospheric.Sht4x.csproj" />
   </ItemGroup>
 </Project>

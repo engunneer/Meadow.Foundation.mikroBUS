@@ -1,4 +1,4 @@
-<Project Sdk="Meadow.Sdk/1.1.0">
+﻿<Project Sdk="Meadow.Sdk/1.1.0">
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageIcon>icon.png</PackageIcon>
@@ -16,8 +16,10 @@
     <Description>MikroElectronika I2C Joystick MikroBus click board</Description>
   </PropertyGroup>
   <ItemGroup>
-  <None Include="..\..\icon.png" Pack="true" PackagePath="" />
-    <PackageReference Include="Meadow.Foundation" Version="0.*" />
-    <PackageReference Include="Meadow.Foundation.Sensors.Hid.As5013" Version="0.*" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="" />
+    <!--<PackageReference Include="Meadow.Foundation.Sensors.Hid.As5013" Version="0.*" />-->
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Hid.As5013\Driver\Sensors.Hid.As5013.csproj" />
   </ItemGroup>
 </Project>

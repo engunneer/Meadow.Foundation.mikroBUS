@@ -1,4 +1,4 @@
-<Project Sdk="Meadow.Sdk/1.1.0">
+﻿<Project Sdk="Meadow.Sdk/1.1.0">
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageIcon>icon.png</PackageIcon>
@@ -16,9 +16,12 @@
     <Description>MikroElectronika I2C 16x9 Click LED board</Description>
   </PropertyGroup>
   <ItemGroup>
-  <None Include="..\..\icon.png" Pack="true" PackagePath="" />
-    <PackageReference Include="Meadow.Foundation" Version="0.*" />
-    <PackageReference Include="Meadow.Foundation.Displays.MicroGraphics" Version="0.*" />
-    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Is31fl3731" Version="0.*" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="" />
+    <!--<PackageReference Include="Meadow.Foundation.Displays.MicroGraphics" Version="0.*" />
+    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Is31fl3731" Version="0.*" />-->
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Graphics.MicroGraphics\Driver\Graphics.MicroGraphics.csproj" />
+    <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\ICs.IOExpanders.Is31fl3731\Driver\ICs.IOExpanders.Is31fl3731.csproj" />
   </ItemGroup>
 </Project>
