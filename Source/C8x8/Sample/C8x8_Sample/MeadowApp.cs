@@ -7,7 +7,7 @@ using System;
 namespace C8x8_Sample
 {
     // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
-    public class MeadowApp : App<F7FeatherV2, MeadowApp>
+    public class MeadowApp : App<F7FeatherV2>
     {
         //<!=SNIP=>
 
@@ -18,12 +18,10 @@ namespace C8x8_Sample
             Console.WriteLine("Initializing ...");
 
             c8x8 = new C8x8(Device, Device.CreateSpiBus(), Device.Pins.D14);
-            c8x8.IgnoreOutOfBoundsPixels = true;
-
-            c8x8.Clear();
 
             var graphics = new MicroGraphics(c8x8)
             {
+                IgnoreOutOfBoundsPixels = true,
                 Rotation = RotationType._270Degrees
             };
             graphics.CurrentFont = new Font4x8();
