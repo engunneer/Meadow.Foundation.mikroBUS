@@ -19,7 +19,4 @@
     <None Include="..\..\icon.png" Pack="true" PackagePath="" />
     <!--<PackageReference Include="Meadow.Foundation.Sensors.Hid.As5013" Version="0.*" />-->
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Hid.As5013\Driver\Sensors.Hid.As5013.csproj" />
-  </ItemGroup>
 </Project>
