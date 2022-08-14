@@ -1,29 +1,51 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation.mikroBUS.Sensors.Buttons;
+using Meadow.Foundation;
+using Meadow.Foundation.Graphics;
+using Meadow.Foundation.mikroBUS.Displays;
 using System;
+using System.Threading.Tasks;
 
-namespace CButton_Sample
+namespace C8800Retro_Sample
 {
     // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
     public class MeadowApp : App<F7FeatherV2>
     {
         //<!=SNIP=>
 
-        CButton ledButton;
+        C8800Retro altair;
 
-        public MeadowApp()
+        MicroGraphics graphics;
+
+        public override Task Initialize()
         {
             Console.WriteLine("Initializing ...");
 
-            ledButton = new CButton(Device, Device.Pins.D03, Device.Pins.D04);
+            altair = new C8800Retro(Device, Device.CreateI2cBus(), Device.Pins.D03);
 
-            ledButton.StartPulse(TimeSpan.FromSeconds(2), 0.75f, 0);
-            ledButton.Clicked += (s, e) =>
+            var button1B = altair.GetButton(C8800Retro.ButtonColumn._1, C8800Retro.ButtonRow.B);
+            button1B.Clicked += Button1B_Clicked;
+
+            graphics = new MicroGraphics(altair)
             {
-                Console.WriteLine("Button clicked");
-                ledButton.IsOn = !ledButton.IsOn;
+                CurrentFont = new Font4x8(),
             };
+
+            return base.Initialize();
+        }
+
+        private void Button1B_Clicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Button 1B clicked");
+        }
+
+        public override Task Run()
+        {
+            graphics.Clear();
+            graphics.DrawText(0, 0, "MF", Color.White);
+            graphics.Show();
+
+            return base.Run();
         }
 
         //<!=SNOP=>
