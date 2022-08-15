@@ -39,6 +39,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
                     ButtonColumn._2 => KeyScanButtonType.Button2,
                     ButtonColumn._3 => KeyScanButtonType.Button3,
                     ButtonColumn._4 => KeyScanButtonType.Button4,
+                    _ => KeyScanButtonType.None
                 };
             }
             if (row == ButtonRow.B)
@@ -49,6 +50,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
                     ButtonColumn._2 => KeyScanButtonType.Button6,
                     ButtonColumn._3 => KeyScanButtonType.Button7,
                     ButtonColumn._4 => KeyScanButtonType.Button8,
+                    _ => KeyScanButtonType.None
                 };
             }
             if (row == ButtonRow.C)
@@ -59,6 +61,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
                     ButtonColumn._2 => KeyScanButtonType.Button10,
                     ButtonColumn._3 => KeyScanButtonType.Button11,
                     ButtonColumn._4 => KeyScanButtonType.Button12,
+                    _ => KeyScanButtonType.None
                 };
             }
             if (row == ButtonRow.D)
@@ -69,6 +72,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
                     ButtonColumn._2 => KeyScanButtonType.Button14,
                     ButtonColumn._3 => KeyScanButtonType.Button15,
                     ButtonColumn._4 => KeyScanButtonType.Button16,
+                    _ => KeyScanButtonType.None
                 };
             }
 
