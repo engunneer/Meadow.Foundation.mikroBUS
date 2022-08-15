@@ -39,13 +39,17 @@ namespace C8800Retro_Sample
             Console.WriteLine("Button 1B clicked");
         }
 
-        public override Task Run()
+        public override async Task Run()
         {
+            altair.EnableBlink(true, true);
+
             graphics.Clear();
             graphics.DrawText(0, 0, "MF", Color.White);
             graphics.Show();
 
-            return base.Run();
+            await Task.Delay(6000);
+
+            altair.EnableBlink(false);
         }
 
         //<!=SNOP=>
