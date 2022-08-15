@@ -17,6 +17,5 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="" />
-    <!--<PackageReference Include="Meadow.Foundation.Sensors.Hid.As5013" Version="0.*" />-->
   </ItemGroup>
 </Project>
