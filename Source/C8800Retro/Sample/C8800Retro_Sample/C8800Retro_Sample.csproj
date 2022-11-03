@@ -7,6 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Meadow.F7" Version="0.*" />
-    <PackageReference Include="Meadow.Foundation.mikroBUS.Displays.C8x8" Version="0.*" />
+    <PackageReference Include="Meadow.Foundation.mikroBUS.Sensors.Buttons.C8800Retro" Version="0.*" />
   </ItemGroup>
 </Project>

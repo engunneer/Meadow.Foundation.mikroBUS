@@ -16,8 +16,11 @@
     <Description>MikroElectronika I2C 16x9 Click LED board</Description>
   </PropertyGroup>
   <ItemGroup>
-  <None Include="..\..\icon.png" Pack="true" PackagePath="" />
-    <PackageReference Include="Meadow.Foundation" Version="0.*" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="" />
+    <!--<PackageReference Include="Meadow.Foundation.Displays.MicroGraphics" Version="0.*" />
+    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Is31fl3731" Version="0.*" />-->
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Meadow.Foundation.Displays.MicroGraphics" Version="0.*" />
     <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Is31fl3731" Version="0.*" />
   </ItemGroup>

@@ -19,7 +19,10 @@ namespace Meadow.Foundation.mikroBUS.Displays
 
         readonly IDigitalOutputPort onOffPort;
 
-        readonly IDisplayBuffer displayBuffer;
+        /// <summary>
+        /// The buffer to hold the display data
+        /// </summary>
+        public IPixelBuffer PixelBuffer { get; protected set; }
 
         /// <summary>
         /// Color mode of display
@@ -70,7 +73,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
             iS31FL3731 = new Is31fl3731(i2cBus, address);
             iS31FL3731.Initialize();
 
-            displayBuffer = new BufferGray8(Width, Height);
+            PixelBuffer = new BufferGray8(Width, Height);
 
             //enable the display
             this.onOffPort.State = true;
@@ -100,7 +103,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="updateDisplay"></param>
         public void Clear(bool updateDisplay = false)
         {
-            displayBuffer.Clear();
+            PixelBuffer.Clear();
 
             if (updateDisplay == true)
             {
@@ -122,7 +125,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
                 { return; }
             }
 
-            displayBuffer.SetPixel(x, y, color);
+            PixelBuffer.SetPixel(x, y, color);
         }
 
         /// <summary>
@@ -143,9 +146,9 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="y">y location in pixels</param>
         public void InvertPixel(int x, int y)
         {
-            var brightness = 255 - displayBuffer.GetPixel(x, y).Color8bppGray;
+            var brightness = 255 - PixelBuffer.GetPixel(x, y).Color8bppGray;
 
-            displayBuffer.SetPixel(x, y, new Color(brightness, brightness, brightness));
+            PixelBuffer.SetPixel(x, y, new Color(brightness, brightness, brightness));
         }
 
         /// <summary>
@@ -154,9 +157,9 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="displayBuffer"></param>
-        public void DrawBuffer(int x, int y, IDisplayBuffer displayBuffer)
+        public void DrawBuffer(int x, int y, IPixelBuffer displayBuffer)
         {
-            this.displayBuffer.WriteBuffer(x, y, displayBuffer);
+            this.PixelBuffer.WriteBuffer(x, y, displayBuffer);
         }
 
         /// <summary>
@@ -166,7 +169,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="updateDisplay"></param>
         public void Fill(Color clearColor, bool updateDisplay = false)
         {
-            displayBuffer.Fill(clearColor);
+            PixelBuffer.Fill(clearColor);
 
             if(updateDisplay)
             {
@@ -184,7 +187,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="fillColor"></param>
         public void Fill(int x, int y, int width, int height, Color fillColor)
         {
-            displayBuffer.Fill(fillColor, x, y, width, height);
+            PixelBuffer.Fill(x, y, width, height, fillColor);
         }
 
         /// <summary>
@@ -199,7 +202,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
             {
                 for(int y = 0; y < Height; y++)
                 {
-                    iS31FL3731.SetLedPwm(frame, (byte)(x + y * Width), displayBuffer.GetPixel(x, y).Color8bppGray);
+                    iS31FL3731.SetLedPwm(frame, (byte)(x + y * Width), PixelBuffer.GetPixel(x, y).Color8bppGray);
                 }
             }
 
@@ -225,6 +228,17 @@ namespace Meadow.Foundation.mikroBUS.Displays
         public void Show(byte frame)
         {
             iS31FL3731.DisplayFrame(frame);
+        }
+
+        /// <summary>
+        /// Write an external buffer to the display buffer
+        /// </summary>
+        /// <param name="x">X postion to write buffer in pixels</param>
+        /// <param name="y">Y postion to write buffer in pixels</param>
+        /// <param name="buffer">The buffer to write</param>
+        public void WriteBuffer(int x, int y, IPixelBuffer buffer)
+        {
+            PixelBuffer.WriteBuffer(x, y, buffer);
         }
     }
 }

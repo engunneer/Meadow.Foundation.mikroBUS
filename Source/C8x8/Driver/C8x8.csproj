@@ -1,4 +1,4 @@
-﻿<Project Sdk="Meadow.Sdk/1.1.0">
+<Project Sdk="Meadow.Sdk/1.1.0">
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageIcon>icon.png</PackageIcon>
@@ -16,9 +16,12 @@
     <Description>MikroElectronika SPI 8x8 Click LED board</Description>
   </PropertyGroup>
   <ItemGroup>
-  <None Include="..\..\icon.png" Pack="true" PackagePath="" />
-    <PackageReference Include="Meadow.Foundation" Version="0.*" />
-    <PackageReference Include="Meadow.Foundation.Displays.Max7219" Version="0.*" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="" />
+    <!--<PackageReference Include="Meadow.Foundation.Displays.Max7219" Version="0.*" />
+    <PackageReference Include="Meadow.Foundation.Displays.MicroGraphics" Version="0.*" />-->
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Meadow.Foundation.Displays.MicroGraphics" Version="0.*" />
+    <PackageReference Include="Meadow.Foundation.Displays.Max7219" Version="0.*" />
   </ItemGroup>
 </Project>
