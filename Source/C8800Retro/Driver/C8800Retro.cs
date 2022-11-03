@@ -18,8 +18,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="address">The I2C address</param>
         public C8800Retro(IMeadowDevice device, II2cBus i2cBus, IPin buttonInterruptPin, byte address = 0) 
             : base(device, i2cBus, buttonInterruptPin, address)
-        {
-        }
+        { }
 
         /// <summary>
         /// Get the button for a given row and column
