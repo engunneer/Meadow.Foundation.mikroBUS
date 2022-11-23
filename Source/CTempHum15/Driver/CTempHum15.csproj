@@ -17,7 +17,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="" />
-    <!--<PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Sht4x" Version="0.*" />-->
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Sht4x" Version="0.*" />

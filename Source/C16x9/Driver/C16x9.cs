@@ -1,9 +1,7 @@
-﻿using Meadow.Devices;
-using Meadow.Foundation.Graphics;
+﻿using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.Buffers;
 using Meadow.Foundation.ICs.IOExpanders;
 using Meadow.Hardware;
-using System;
 
 namespace Meadow.Foundation.mikroBUS.Displays
 {

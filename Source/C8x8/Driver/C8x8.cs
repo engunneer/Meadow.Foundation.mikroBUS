@@ -16,8 +16,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="chipselectPort">Chip select port</param>
         public C8x8(ISpiBus spiBus, IDigitalOutputPort chipselectPort) 
             : base(spiBus, chipselectPort, 1, Max7219Mode.Display)
-        {
-        }
+        { }
 
         /// <summary>
         /// Creates a new MikroBus 8x8 object 
@@ -27,7 +26,6 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="chipSelectPin">Chip select pin</param>
         public C8x8(IMeadowDevice device, ISpiBus spiBus, IPin chipSelectPin) 
             : base(device, spiBus, chipSelectPin, 1, Max7219Mode.Display)
-        {
-        }
+        { }
     }
 }
