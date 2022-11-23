@@ -1,0 +1,62 @@
+name: Package Creation
+
+on:
+  workflow_dispatch:
+
+env:
+  version: '0.89.0'
+  token: ${{ secrets.NUGET_TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set VERSION variable from env.version
+      run: echo "VERSION=${{ env.version }}" >> $GITHUB_ENV
+      
+    - uses: ./.github/actions/build-package
+      with:
+        packageId: Meadow.Foundation.mikroBUS.Displays.C16x9
+        path: Source/C16x9/Driver/C16x9.csproj
+        version: ${{ env.version }}
+        token: ${{ env.token }}
+
+    - uses: ./.github/actions/build-package
+      with:
+        packageId: Meadow.Foundation.mikroBUS.Sensors.Buttons.C8800Retro
+        path: Source/C8800Retro/Driver/C8800Retro.csproj
+        version: ${{ env.version }}
+        token: ${{ env.token }}
+
+    - uses: ./.github/actions/build-package
+      with:
+        packageId: Meadow.Foundation.mikroBUS.Displays.C8x8
+        path: Source/C8x8/Driver/C8x8.csproj
+        version: ${{ env.version }}
+        token: ${{ env.token }}
+
+    - uses: ./.github/actions/build-package
+      with:
+        packageId: Meadow.Foundation.mikroBUS.Sensors.Buttons.CButton
+        path: Source/CButton/Driver/CButton.csproj
+        version: ${{ env.version }}
+        token: ${{ env.token }}
+
+    - uses: ./.github/actions/build-package
+      with:
+        packageId: Meadow.Foundation.mikroBUS.Sensors.Hid.CJoystick
+        path: Source/CJoystick/Driver/CJoystick.csproj
+        version: ${{ env.version }}
+        token: ${{ env.token }}
+
+    - uses: ./.github/actions/build-package
+      with:
+        packageId: Meadow.Foundation.mikroBUS.Sensors.Atmospheric.CTempHum15
+        path: Source/CTempHum15/Driver/CTempHum15.csproj
+        version: ${{ env.version }}
+        token: ${{ env.token }}
+
+
