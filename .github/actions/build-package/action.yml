@@ -1,4 +1,4 @@
-name: build-library
+name: build-package
 description: Builds and publishes M.F. libraries and drivers
 
 inputs:
