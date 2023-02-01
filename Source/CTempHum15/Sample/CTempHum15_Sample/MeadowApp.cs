@@ -1,6 +1,6 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation.mikroBUS;
+using Meadow.Foundation.Sensors.Atmospheric.mikroBUS;
 using System;
 using System.Threading.Tasks;
 
