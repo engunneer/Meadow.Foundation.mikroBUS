@@ -25,7 +25,12 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <summary>
         /// Color mode of display
         /// </summary>
-        public ColorType ColorMode => ColorType.Format8bppGray;
+        public ColorMode ColorMode => ColorMode.Format8bppGray;
+
+        /// <summary>
+        /// Color mode of display
+        /// </summary>
+        public ColorMode SupportedColorModes => ColorMode.Format8bppGray;
 
         /// <summary>
         /// Width of display in pixels

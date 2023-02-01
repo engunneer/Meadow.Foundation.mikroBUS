@@ -1,9 +1,10 @@
-﻿using Meadow.Devices;
-using Meadow.Foundation.Sensors.Buttons;
+﻿using Meadow.Foundation.Sensors.Buttons;
 using Meadow.Foundation.Sensors.Hid;
 using Meadow.Hardware;
+using Meadow.Peripherals.Sensors;
 using Meadow.Peripherals.Sensors.Buttons;
 using System;
+using System.Threading.Tasks;
 
 namespace Meadow.Foundation.mikroBUS.Sensors.Hid
 {
@@ -63,6 +64,15 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Hid
             button.PressEnded += (s, e) => PressEnded?.Invoke(s, e);
             button.Clicked += (s, e) => Clicked?.Invoke(s, e);
             button.LongClicked += (s, e) => LongClicked?.Invoke(s, e);
+        }
+
+        /// <summary>
+        /// The current button state
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> ISensor<bool>.Read()
+        {
+            return Task.FromResult(State);
         }
     }
 }
