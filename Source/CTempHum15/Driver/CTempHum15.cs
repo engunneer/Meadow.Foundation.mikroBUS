@@ -1,6 +1,7 @@
-﻿using Meadow.Hardware;
+﻿using Meadow.Foundation.Sensors.Atmospheric;
+using Meadow.Hardware;
 
-namespace Meadow.Foundation.Sensors.Atmospheric.mikroBUS
+namespace Meadow.Foundation.mikroBUS.Sensors.Atmospheric
 {
     /// <summary>
     /// Represents a mikroBUS Temp and Hum 15 Click board
