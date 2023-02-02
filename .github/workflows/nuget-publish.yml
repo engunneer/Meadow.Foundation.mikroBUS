@@ -27,7 +27,7 @@ jobs:
 
     - uses: ./.github/actions/build-package
       with:
-        packageId: Meadow.Foundation.mikroBUS.Sensors.Buttons.C8800Retro
+        packageId: Meadow.Foundation.mikroBUS.Displays.C8800Retro
         path: Source/C8800Retro/Driver/C8800Retro.csproj
         version: ${VERSION}
         token: ${{ env.token }}
@@ -50,6 +50,13 @@ jobs:
       with:
         packageId: Meadow.Foundation.mikroBUS.Sensors.Hid.CJoystick
         path: Source/CJoystick/Driver/CJoystick.csproj
+        version: ${VERSION}
+        token: ${{ env.token }}
+        
+    - uses: ./.github/actions/build-package
+      with:
+        packageId: Meadow.Foundation.mikroBUS.Sensors.Gnss.CGNSS10
+        path: Source/CGNSS10/Driver/CGNSS10.csproj
         version: ${VERSION}
         token: ${{ env.token }}
 
