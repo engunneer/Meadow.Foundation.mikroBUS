@@ -7,6 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\Meadow.Core\Source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
-    <PackageReference Include="Meadow.Foundation.mikroBUS.Displays.C16x9" Version="0.*" />
+    <ProjectReference Include="..\..\Driver\C16x9.csproj" />
   </ItemGroup>
 </Project>
