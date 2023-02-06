@@ -9,10 +9,17 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Gnss
     public class CGNSS5 : NeoM8
     {
         /// <summary>
-        /// Creates a new CGNSS5 object
+        /// Creates a new CGNSS5 object using serial
         /// </summary>
         public CGNSS5(IMeadowDevice device, SerialPortName serialPortName, IPin resetPin, IPin ppsPin = null)
             : base(device, serialPortName, resetPin, ppsPin)
+        { }
+
+        /// <summary>
+        /// Creates a new CGNSS5 object using I2C
+        /// </summary>
+        public CGNSS5(IMeadowDevice device, II2cBus i2cBus, IPin resetPin, IPin ppsPin = null)
+            : base(device, i2cBus, (byte)Addresses.Default, resetPin: resetPin, ppsPin: ppsPin)
         { }
     }
 }
