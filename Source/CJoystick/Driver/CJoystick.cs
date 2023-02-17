@@ -53,12 +53,11 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Hid
         /// <summary>
         /// Creates a mikroBUS Joystick Click board instance
         /// </summary>
-        /// <param name="device">meadow device</param>
         /// <param name="tstPin">TST pin</param>
         /// <param name="i2cBus">I2C bus</param>
-        public CJoystick(IMeadowDevice device, IPin tstPin, II2cBus i2cBus) : base(i2cBus, (byte)Addresses.Default)
+        public CJoystick(IPin tstPin, II2cBus i2cBus) : base(i2cBus, (byte)Addresses.Default)
         {
-            button = new PushButton(device, tstPin);
+            button = new PushButton(tstPin);
 
             button.PressStarted += (s, e) => PressStarted?.Invoke(s, e);
             button.PressEnded += (s, e) => PressEnded?.Invoke(s, e);

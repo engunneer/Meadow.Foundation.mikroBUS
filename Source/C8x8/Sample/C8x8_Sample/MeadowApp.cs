@@ -17,7 +17,7 @@ namespace C8x8_Sample
         {
             Console.WriteLine("Initializing ...");
 
-            c8x8 = new C8x8(Device, Device.CreateSpiBus(), Device.Pins.D14);
+            c8x8 = new C8x8(Device.CreateSpiBus(), Device.Pins.D14);
 
             var graphics = new MicroGraphics(c8x8)
             {
