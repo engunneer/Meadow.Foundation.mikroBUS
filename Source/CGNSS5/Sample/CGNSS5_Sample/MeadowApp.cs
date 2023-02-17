@@ -17,9 +17,9 @@ namespace CGNSS5_Sample
         {
             Resolver.Log.Info("Initializing ...");
 
-            //gps = new CGNSS5(Device, Device.PlatformOS.GetSerialPortName("COM1"), Device.Pins.D09, Device.Pins.D11);
+            //gps = new CGNSS5(Device.PlatformOS.GetSerialPortName("COM1"), Device.Pins.D09, Device.Pins.D11);
 
-            gps = new CGNSS5(Device, Device.CreateI2cBus(), resetPin: Device.Pins.D09, ppsPin: Device.Pins.D11);
+            gps = new CGNSS5(Device.CreateI2cBus(), resetPin: Device.Pins.D09, ppsPin: Device.Pins.D11);
 
             gps.GgaReceived += (object sender, GnssPositionInfo location) =>
             {

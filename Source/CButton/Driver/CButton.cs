@@ -35,13 +35,12 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Buttons
         /// <summary>
         /// Creates a new CButton object
         /// </summary>
-        /// <param name="device">Meadow device</param>
         /// <param name="ledPin">Led pin</param>
         /// <param name="buttonPin">Button pin</param>
-        public CButton(IMeadowDevice device, IPin ledPin, IPin buttonPin) 
-            : base(device, buttonPin, ResistorMode.InternalPullUp)
+        public CButton(IPin ledPin, IPin buttonPin) 
+            : base(buttonPin, ResistorMode.InternalPullUp)
         {
-            pwmLed = new PwmLed(device, ledPin, new Units.Voltage(TypicalForwardVoltage.Green));
+            pwmLed = new PwmLed(ledPin, new Units.Voltage(TypicalForwardVoltage.Green));
         }
 
         /// <summary>

@@ -18,8 +18,8 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Gnss
         /// <summary>
         /// Creates a new CGNSS5 object using I2C
         /// </summary>
-        public CGNSS5(IMeadowDevice device, II2cBus i2cBus, IPin resetPin, IPin ppsPin = null)
-            : base(device, i2cBus, (byte)Addresses.Default, resetPin: resetPin, ppsPin: ppsPin)
+        public CGNSS5(II2cBus i2cBus, IPin resetPin, IPin ppsPin = null)
+            : base(i2cBus, (byte)Addresses.Default, resetPin: resetPin, ppsPin: ppsPin)
         { }
     }
 }

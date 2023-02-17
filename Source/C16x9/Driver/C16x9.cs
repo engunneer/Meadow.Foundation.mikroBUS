@@ -92,11 +92,10 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <summary>
         /// Creates a CharlieWing driver
         /// </summary>
-        /// <param name="device">Meadow device controller</param>
         /// <param name="onOffPin">IO pin to controller display on/off state</param>
         /// <param name="i2cBus">I2C bus</param>
-        public C16x9(IMeadowDevice device, IPin onOffPin, II2cBus i2cBus) :
-            this(device.CreateDigitalOutputPort(onOffPin), i2cBus, (byte)Is31fl3731.Addresses.Default)
+        public C16x9(IPin onOffPin, II2cBus i2cBus) :
+            this(onOffPin.CreateDigitalOutputPort(), i2cBus, (byte)Is31fl3731.Addresses.Default)
         {
         }
 
