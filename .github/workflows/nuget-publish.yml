@@ -59,7 +59,14 @@ jobs:
         path: Source/CGNSS10/Driver/CGNSS10.csproj
         version: ${VERSION}
         token: ${{ env.token }}
-
+        
+    - uses: ./.github/actions/build-package
+      with:
+        packageId: Meadow.Foundation.mikroBUS.Sensors.Gnss.CGNSS5
+        path: Source/CGNSS5/Driver/CGNSS5.csproj
+        version: ${VERSION}
+        token: ${{ env.token }}    
+    
     - uses: ./.github/actions/build-package
       with:
         packageId: Meadow.Foundation.mikroBUS.Sensors.Atmospheric.CTempHum15
