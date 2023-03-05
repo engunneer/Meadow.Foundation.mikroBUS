@@ -12,12 +12,11 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <summary>
         /// Creates an Altair 8800 retro click board object
         /// </summary>
-        /// <param name="device">The Meadow device</param>
         /// <param name="i2cBus">The I2C bus</param>
         /// <param name="buttonInterruptPin">The interrupt pin</param>
         /// <param name="address">The I2C address</param>
-        public C8800Retro(IMeadowDevice device, II2cBus i2cBus, IPin buttonInterruptPin, byte address = 0) 
-            : base(device, i2cBus, buttonInterruptPin, address)
+        public C8800Retro(II2cBus i2cBus, IPin buttonInterruptPin, byte address = 0) 
+            : base(i2cBus, buttonInterruptPin, address)
         { }
 
         /// <summary>

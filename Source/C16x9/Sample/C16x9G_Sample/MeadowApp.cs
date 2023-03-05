@@ -17,7 +17,7 @@ namespace C16x9_Sample
         {
             Console.WriteLine("Initializing ...");
 
-            c16x9 = new C16x9(Device, Device.Pins.D14, Device.CreateI2cBus(Meadow.Hardware.I2cBusSpeed.Standard));
+            c16x9 = new C16x9(Device.Pins.D14, Device.CreateI2cBus(Meadow.Hardware.I2cBusSpeed.Standard));
             c16x9.IgnoreOutOfBoundsPixels = true;
 
             c16x9.Clear();
