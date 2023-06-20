@@ -1,6 +1,6 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation.mikroBUS.Sensors.Buttons;
+using Meadow.Foundation.mikroBUS.Sensors;
 using System;
 
 namespace CLEM_Sample
