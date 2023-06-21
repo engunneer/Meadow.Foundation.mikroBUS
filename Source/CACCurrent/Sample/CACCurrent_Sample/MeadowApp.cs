@@ -1,7 +1,9 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.mikroBUS.Sensors;
+using Meadow.Hardware;
 using System;
+using System.Threading.Tasks;
 
 namespace CACCurrent_Sample
 {
@@ -10,12 +12,43 @@ namespace CACCurrent_Sample
     {
         //<!=SNIP=>
 
-        CACCurrent currenClick;
+        private CACCurrent currentClick;
+        private const bool useSpi = false;
 
-        public MeadowApp()
+        public override Task Initialize()
         {
             Console.WriteLine("Initializing ...");
 
+            if (useSpi)
+            {
+                currentClick = new CACCurrent(
+                    Device.CreateSpiBus(),
+                    Device.Pins.D14.CreateDigitalOutputPort());
+            }
+            else
+            {
+                currentClick = new CACCurrent(Device.Pins.A00.CreateAnalogInputPort(5));
+            }
+
+            currentClick.CurrentUpdated += OnCurrentUpdated;
+            currentClick.StartUpdating();
+
+            return Task.CompletedTask;
+        }
+
+        public override async Task Run()
+        {
+            while (true)
+            {
+                var r = await currentClick.Read();
+                Resolver.Log.Info($"Reading: {r.Amps:0.00} A");
+                await Task.Delay(1000);
+            }
+        }
+
+        private void OnCurrentUpdated(object sender, IChangeResult<Meadow.Units.Current> e)
+        {
+            Resolver.Log.Info($"Current changed from {(e.Old ?? new Meadow.Units.Current(0)).Amps}A to {e.New.Amps}A");
         }
 
         //<!=SNOP=>
