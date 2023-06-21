@@ -2,30 +2,14 @@
 using Meadow.Hardware;
 using Meadow.Units;
 using System;
-using System.Threading.Tasks;
 
 namespace Meadow.Foundation.mikroBUS.Sensors
 {
     /// <summary>
     /// Represents a mikroBUS AC current sensing LEM Click board
     /// </summary>
-    public class CLEM : SamplingSensorBase<Current>
+    public class CLEM : CurrentTransducer
     {
-        /// <summary>
-        /// Raised when the value of the reading changes
-        /// </summary>
-        public event EventHandler<IChangeResult<Current>> CurrentUpdated = delegate { };
-
-        ///<Summary>
-        /// AnalogInputPort connected to the current sensor
-        ///</Summary>
-        protected IAnalogInputPort AnalogInputPort { get; set; }
-
-        /// <summary>
-        /// Current voltage
-        /// </summary>
-        public Current? Current { get; protected set; }
-
         /// <summary>
         /// Reference voltage (2.048V)
         /// </summary>
@@ -46,7 +30,7 @@ namespace Meadow.Foundation.mikroBUS.Sensors
             TimeSpan? sampleInterval = null)
         {
             mcp3201 = new Mcp3201(spiBus, chipSelectPin);
-            Initialize(sampleCount, sampleInterval);
+            InitializeMcp(sampleCount, sampleInterval);
         }
 
         /// <summary>
@@ -62,82 +46,24 @@ namespace Meadow.Foundation.mikroBUS.Sensors
             TimeSpan? sampleInterval = null)
         {
             mcp3201 = new Mcp3201(spiBus, chipSelectPort);
-            Initialize(sampleCount, sampleInterval);
-        }
-
-        void Initialize(int sampleCount = 5, TimeSpan? sampleInterval = null)
-        {
-            AnalogInputPort = mcp3201.CreateAnalogInputPort(sampleCount, sampleInterval ?? TimeSpan.FromSeconds(5), ReferenceVoltage);
-
-            AnalogInputPort.Subscribe
-            (
-                IAnalogInputPort.CreateObserver(
-                    result =>
-                    {
-                        ChangeResult<Current> changeResult = new ChangeResult<Current>()
-                        {
-                            New = VoltageToCurrent(result.New),
-                            Old = Current
-                        };
-                        Current = changeResult.New;
-                        RaiseEventsAndNotify(changeResult);
-                    }
-                )
-            );
+            InitializeMcp(sampleCount, sampleInterval);
         }
 
         /// <summary>
-        /// Convenience method to get the current temperature. For frequent reads, use
-        /// StartSampling() and StopSampling() in conjunction with the SampleBuffer.
+        /// Creates a new CLEM object using an analog input for readings
         /// </summary>
-        /// <returns>The temperature averages of the given sample count</returns>
-        protected override async Task<Current> ReadSensor()
+        /// <param name="analogInput">The analog input connected to the Click's AN port</param>
+        public CLEM(IAnalogInputPort analogInput)
         {
-            var voltage = await AnalogInputPort.Read();
-            var newCurrent = VoltageToCurrent(voltage);
-            Current = newCurrent;
-            return newCurrent;
+            base.Initialize(analogInput, new Voltage(1.8, Voltage.UnitType.Volts), new Current(30, Units.Current.UnitType.Amps));
         }
 
-        /// <summary>
-        /// Starts continuously sampling the sensor
-        /// </summary>
-        public override void StartUpdating(TimeSpan? updateInterval)
-        {
-            lock (samplingLock)
-            {
-                if (IsSampling) { return; }
-                IsSampling = true;
-                AnalogInputPort.StartUpdating(updateInterval);
-            }
-        }
 
-        /// <summary>
-        /// Stops sampling the current
-        /// </summary>
-        public override void StopUpdating()
+        private void InitializeMcp(int sampleCount = 5, TimeSpan? sampleInterval = null)
         {
-            lock (samplingLock)
-            {
-                if (!IsSampling) { return; }
-                IsSampling = false;
-                AnalogInputPort.StopUpdating();
-            }
-        }
+            var port = mcp3201.CreateAnalogInputPort(sampleCount, sampleInterval ?? TimeSpan.FromSeconds(5), ReferenceVoltage);
 
-        /// <summary>
-        /// Method to notify subscribers to CurrentUpdated event handler
-        /// </summary>
-        /// <param name="changeResult"></param>
-        protected override void RaiseEventsAndNotify(IChangeResult<Current> changeResult)
-        {
-            CurrentUpdated?.Invoke(this, changeResult);
-            base.RaiseEventsAndNotify(changeResult);
-        }
-
-        Current VoltageToCurrent(Voltage voltage)
-        {
-            return new Current(voltage.Volts * 30.0 / 1.8, Units.Current.UnitType.Amps);
+            base.Initialize(port, new Voltage(1.8, Voltage.UnitType.Volts), new Current(30, Units.Current.UnitType.Amps));
         }
     }
 }
