@@ -8,17 +8,18 @@
     <AssemblyName>CButton</AssemblyName>
     <Company>Wilderness Labs, Inc</Company>
     <PackageProjectUrl>http://developer.wildernesslabs.co/Meadow/Meadow.Foundation/</PackageProjectUrl>
-    <PackageId>Meadow.Foundation.mikroBUS.Sensors.Buttons.CButton</PackageId>
+    <PackageId>Meadow.Foundation.mikroBUS.Sensors.Buttons.CACCurrent</PackageId>
     <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Foundation</RepositoryUrl>
-    <PackageTags>Meadow, Meadow.Foundation, MikroBus, Mikroe, MikroElectronika, button</PackageTags>
-    <Version>0.1.0</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>MikroElectronika PWM GPIO Led Button MikroBus click board</Description>
+	  <PackageTags>Meadow,Meadow.Foundation,MikroBus,Mikroe,MikroElectronika,AC,current</PackageTags>
+	  <Version>0.1.0</Version>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <Description>MikroElectronika SPI AC Current click board</Description>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\ICs.ADCs.Mcp3xxx\Driver\ICs.ADC.Mcp3xxx.csproj" />
+    <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Power.CurrentTransducer\Driver\Sensors.Power.CurrentTransducer.csproj" />
   </ItemGroup>
 </Project>

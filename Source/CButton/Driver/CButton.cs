@@ -47,7 +47,7 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Buttons
         /// </summary>
         /// <param name="ledPwmPort">Led PWM port</param>
         /// <param name="buttonInterruptPort">Button interrupt port</param>
-        public CButton(IPwmPort ledPwmPort, IDigitalInputPort buttonInterruptPort)
+        public CButton(IPwmPort ledPwmPort, IDigitalInterruptPort buttonInterruptPort)
             : base(buttonInterruptPort)
         {
             pwmLed = new PwmLed(ledPwmPort, new Units.Voltage(TypicalForwardVoltage.Green));
