@@ -8,3 +8,14 @@ The **Meadow.Foundation** peripherals library is an open-source repository of dr
 
 For more information on developing for Meadow, visit [developer.wildernesslabs.co](http://developer.wildernesslabs.co/), to view all Wilderness Labs open-source projects, including samples, visit [github.com/wildernesslabs](https://github.com/wildernesslabs/)
 
+## Usage
+
+```
+CLEM currenClick;
+
+public MeadowApp()
+{
+    Console.WriteLine("Initializing ...");
+}
+
+```
