@@ -7,8 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
 	<ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
-	<ProjectReference Include="..\..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
-	<ProjectReference Include="..\..\..\C420R\Driver\C420R.csproj" />
 	<ProjectReference Include="..\..\Driver\C420T.csproj" />
   </ItemGroup>
 </Project>

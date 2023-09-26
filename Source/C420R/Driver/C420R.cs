@@ -9,7 +9,7 @@ namespace Meadow.Foundation.mikroBUS.Sensors
     /// <summary>
     /// Represents a mikroBUS 4-20mA receiver Click board
     /// </summary>
-    public class C420R
+    public class C420R : PollingSensorBase<Current>
     {
         private IAnalogInputPort _adc;
 
@@ -52,15 +52,16 @@ namespace Meadow.Foundation.mikroBUS.Sensors
             InitializeMcp(sampleCount, sampleInterval);
         }
 
-        public async Task<Current> Read()
-        {
-            var volts = await _adc.Read();
-            return new Current(volts.Volts / 200d);
-        }
-
-        private void InitializeMcp(int sampleCount = 5, TimeSpan? sampleInterval = null)
+        private void InitializeMcp(int sampleCount = 1, TimeSpan? sampleInterval = null)
         {
             _adc = mcp3201.CreateAnalogInputPort(sampleCount, sampleInterval ?? TimeSpan.FromSeconds(5), ReferenceVoltage);
+        }
+
+        /// <inheritdoc/>
+        protected override async Task<Current> ReadSensor()
+        {
+            var volts = await _adc.Read();
+            return new Current(volts.Volts / 100d);
         }
     }
 }
