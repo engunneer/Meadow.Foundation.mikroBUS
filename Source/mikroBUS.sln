@@ -163,9 +163,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sensors.Light.Bh1750", "..\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Audio.MicroAudio", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Audio.MicroAudio\Driver\Audio.MicroAudio.csproj", "{4DAC5C07-DE64-44AC-A0DD-57B06D464A84}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.MBus", "..\..\Meadow.MBus\Source\Driver\Meadow.MBus.csproj", "{3A5FEC5F-EF83-4331-9377-6D6375B2B960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Foundation.MBus", "..\..\Meadow.Foundation.MBus\Source\Driver\Meadow.MBus.csproj", "{3A5FEC5F-EF83-4331-9377-6D6375B2B960}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PadPulsM2", "..\..\Meadow.MBus\Source\Devices\RelayMBus\PadPulsM2\Driver\PadPulsM2.csproj", "{793CC278-FB45-4F37-8B65-7681B0C486AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PadPulsM2", "..\..\Meadow.Foundation.MBus\Source\Devices\RelayMBus\PadPulsM2\Driver\PadPulsM2.csproj", "{793CC278-FB45-4F37-8B65-7681B0C486AB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CMBusMaster", "CMBusMaster", "{B86890B5-CB69-45AF-9C55-FEBD0E622E85}"
 EndProject
