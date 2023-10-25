@@ -61,6 +61,13 @@ jobs:
         path: Meadow.Foundation
         ref: develop
 
+    - name: Checkout Meadow.Foundation.MBus
+      uses: actions/checkout@v3
+      with:
+        repository: WildernessLabs/Meadow.Foundation.MBus
+        path: Meadow.Foundation.MBus
+        ref: develop
+
     - name: Checkout Meadow.ProjectLab
       uses: actions/checkout@v3
       with:
