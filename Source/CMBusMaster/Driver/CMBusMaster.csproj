@@ -9,21 +9,21 @@
     <Authors>Wilderness Labs, Inc</Authors>
     <TargetFramework>netstandard2.1</TargetFramework>
     <OutputType>Library</OutputType>
-    <AssemblyName>C8800Retro</AssemblyName>
+    <AssemblyName>CMBusMaster</AssemblyName>
     <Company>Wilderness Labs, Inc</Company>
     <PackageProjectUrl>http://developer.wildernesslabs.co/Meadow/Meadow.Foundation/</PackageProjectUrl>
-    <PackageId>Meadow.Foundation.mikroBUS.Displays.C8800Retro</PackageId>
+    <PackageId>Meadow.Foundation.mikroBUS.Sensors.MBus.CMBusMaster</PackageId>
     <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Foundation</RepositoryUrl>
-    <PackageTags>Meadow, Meadow.Foundation, altair, as1115, retro, MikroBus, Mikroe, MikroElectronika, buttons, leds, led driver, keyscan</PackageTags>
+    <PackageTags>Meadow,Meadow.Foundation,MikroBus,Mikroe,MikroElectronika,M-Bus,Meter-Bus</PackageTags>
     <Version>0.1.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>MikroElectronika Altair 8800 I2C led driver and keyscan MikroBus retro click board</Description>
+    <Description>MikroElectronika Serial M-Bus MikroBus click board</Description>
   </PropertyGroup>
   <ItemGroup>
     <None Include=".\Readme.md" Pack="true" PackagePath=""/>
     <None Include="..\..\icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.As1115" Version="1.5.0" />
+    <PackageReference Include="Meadow.Foundation.MBus" Version="1.5.0" />
   </ItemGroup>
 </Project>
