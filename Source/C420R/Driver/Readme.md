@@ -1,8 +1,8 @@
-# Meadow.Foundation.mikroBUS.Sensors.Buttons.CACCurrent
+# Meadow.Foundation.mikroBUS.Sensors.C420R
 
-**MikroElectronika SPI AC Current click board**
+**MikroElectronika SPI 4-20mA Receiver click board**
 
-The **CACCurrent** library is designed for the [Wilderness Labs](www.wildernesslabs.co) Meadow .NET IoT platform and is part of [Meadow.Foundation](https://developer.wildernesslabs.co/Meadow/Meadow.Foundation/).
+The **C420R** library is designed for the [Wilderness Labs](www.wildernesslabs.co) Meadow .NET IoT platform and is part of [Meadow.Foundation](https://developer.wildernesslabs.co/Meadow/Meadow.Foundation/).
 
 The **Meadow.Foundation** peripherals library is an open-source repository of drivers and libraries that streamline and simplify adding hardware to your C# .NET Meadow IoT application.
 
@@ -13,26 +13,13 @@ To view all Wilderness Labs open-source projects, including samples, visit [gith
 ## Usage
 
 ```csharp
-private CACCurrent currentClick;
-private const bool useSpi = false;
+private C420R receiver;
 
 public override Task Initialize()
 {
     Console.WriteLine("Initializing ...");
 
-    if (useSpi)
-    {
-        currentClick = new CACCurrent(
-            Device.CreateSpiBus(),
-            Device.Pins.D14.CreateDigitalOutputPort());
-    }
-    else
-    {
-        currentClick = new CACCurrent(Device.Pins.A00.CreateAnalogInputPort(5));
-    }
-
-    currentClick.CurrentUpdated += OnCurrentUpdated;
-    currentClick.StartUpdating();
+    receiver = new C420R(Device.CreateSpiBus(), Device.Pins.D00);
 
     return Task.CompletedTask;
 }
@@ -41,15 +28,10 @@ public override async Task Run()
 {
     while (true)
     {
-        var r = await currentClick.Read();
-        Resolver.Log.Info($"Reading: {r.Amps:0.00} A");
+        var r = await receiver.Read();
+        Resolver.Log.Info($"Reading: {r.Milliamps:0.00} mA");
         await Task.Delay(1000);
     }
-}
-
-private void OnCurrentUpdated(object sender, IChangeResult<Meadow.Units.Current> e)
-{
-    Resolver.Log.Info($"Current changed from {(e.Old ?? new Meadow.Units.Current(0)).Amps}A to {e.New.Amps}A");
 }
 
 ```

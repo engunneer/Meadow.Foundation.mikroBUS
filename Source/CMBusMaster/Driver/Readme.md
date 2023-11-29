@@ -1,8 +1,8 @@
-# Meadow.Foundation.mikroBUS.Sensors.Buttons.CACCurrent
+# Meadow.Foundation.mikroBUS.Sensors.MBus.CMBusMaster
 
-**MikroElectronika SPI AC Current click board**
+**MikroElectronika Serial M-Bus MikroBus click board**
 
-The **CACCurrent** library is designed for the [Wilderness Labs](www.wildernesslabs.co) Meadow .NET IoT platform and is part of [Meadow.Foundation](https://developer.wildernesslabs.co/Meadow/Meadow.Foundation/).
+The **CMBusMaster** library is designed for the [Wilderness Labs](www.wildernesslabs.co) Meadow .NET IoT platform and is part of [Meadow.Foundation](https://developer.wildernesslabs.co/Meadow/Meadow.Foundation/).
 
 The **Meadow.Foundation** peripherals library is an open-source repository of drivers and libraries that streamline and simplify adding hardware to your C# .NET Meadow IoT application.
 
@@ -13,43 +13,38 @@ To view all Wilderness Labs open-source projects, including samples, visit [gith
 ## Usage
 
 ```csharp
-private CACCurrent currentClick;
-private const bool useSpi = false;
+private CMBusMaster master;
+private IProjectLabHardware projectLab;
+private PadPulsM2 pulseCounter;
 
 public override Task Initialize()
 {
-    Console.WriteLine("Initializing ...");
+    Resolver.Log.Info("Initializing ...");
 
-    if (useSpi)
-    {
-        currentClick = new CACCurrent(
-            Device.CreateSpiBus(),
-            Device.Pins.D14.CreateDigitalOutputPort());
-    }
-    else
-    {
-        currentClick = new CACCurrent(Device.Pins.A00.CreateAnalogInputPort(5));
-    }
+    projectLab = ProjectLab.Create();
 
-    currentClick.CurrentUpdated += OnCurrentUpdated;
-    currentClick.StartUpdating();
+    master = new CMBusMaster(
+        projectLab.MikroBus1.CreateSerialPort(
+            baudRate: 9600,
+            parity: Meadow.Hardware.Parity.Even)
+        );
+
+    pulseCounter = new PadPulsM2(master);
 
     return Task.CompletedTask;
 }
 
 public override async Task Run()
 {
+    pulseCounter.StartMonitoring();
+
+    Resolver.Log.Info($"Ports: {pulseCounter.Ports[0].ID:X8} {pulseCounter.Ports[1].ID:X8}");
+
     while (true)
     {
-        var r = await currentClick.Read();
-        Resolver.Log.Info($"Reading: {r.Amps:0.00} A");
-        await Task.Delay(1000);
+        Resolver.Log.Info($"Counts: {pulseCounter.Ports[0].CurrentCount:X8} {pulseCounter.Ports[1].CurrentCount:X8}");
+        await Task.Delay(TimeSpan.FromSeconds(5));
     }
-}
-
-private void OnCurrentUpdated(object sender, IChangeResult<Meadow.Units.Current> e)
-{
-    Resolver.Log.Info($"Current changed from {(e.Old ?? new Meadow.Units.Current(0)).Amps}A to {e.New.Amps}A");
 }
 
 ```

@@ -1,8 +1,8 @@
-# Meadow.Foundation.mikroBUS.Sensors.Buttons.CACCurrent
+# Meadow.Foundation.mikroBUS.Sensors.C420T
 
-**MikroElectronika SPI AC Current click board**
+**MikroElectronika SPI 4-20mA Transmitter click board**
 
-The **CACCurrent** library is designed for the [Wilderness Labs](www.wildernesslabs.co) Meadow .NET IoT platform and is part of [Meadow.Foundation](https://developer.wildernesslabs.co/Meadow/Meadow.Foundation/).
+The **C420T** library is designed for the [Wilderness Labs](www.wildernesslabs.co) Meadow .NET IoT platform and is part of [Meadow.Foundation](https://developer.wildernesslabs.co/Meadow/Meadow.Foundation/).
 
 The **Meadow.Foundation** peripherals library is an open-source repository of drivers and libraries that streamline and simplify adding hardware to your C# .NET Meadow IoT application.
 
@@ -13,43 +13,41 @@ To view all Wilderness Labs open-source projects, including samples, visit [gith
 ## Usage
 
 ```csharp
-private CACCurrent currentClick;
-private const bool useSpi = false;
+private C420T transmitter;
 
 public override Task Initialize()
 {
     Console.WriteLine("Initializing ...");
 
-    if (useSpi)
-    {
-        currentClick = new CACCurrent(
-            Device.CreateSpiBus(),
-            Device.Pins.D14.CreateDigitalOutputPort());
-    }
-    else
-    {
-        currentClick = new CACCurrent(Device.Pins.A00.CreateAnalogInputPort(5));
-    }
-
-    currentClick.CurrentUpdated += OnCurrentUpdated;
-    currentClick.StartUpdating();
+    transmitter = new C420T(Device.CreateSpiBus(), Device.Pins.D00);
 
     return Task.CompletedTask;
 }
 
 public override async Task Run()
 {
+    var ma = 4;
+    var direction = 1;
+
     while (true)
     {
-        var r = await currentClick.Read();
-        Resolver.Log.Info($"Reading: {r.Amps:0.00} A");
+        ma += direction;
+        if (ma == 20)
+        {
+            direction = -1;
+        }
+        else if (ma == 4)
+        {
+            direction = 1;
+        }
+
+        var val = new Meadow.Units.Current(ma, Meadow.Units.Current.UnitType.Milliamps);
+
+        Resolver.Log.Info($"Writing: {val.Milliamps:0.00} mA");
+        transmitter?.GenerateOutput(val);
+
         await Task.Delay(1000);
     }
-}
-
-private void OnCurrentUpdated(object sender, IChangeResult<Meadow.Units.Current> e)
-{
-    Resolver.Log.Info($"Current changed from {(e.Old ?? new Meadow.Units.Current(0)).Amps}A to {e.New.Amps}A");
 }
 
 ```
