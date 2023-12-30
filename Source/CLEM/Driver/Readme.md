@@ -1,4 +1,4 @@
-# Meadow.Foundation.mikroBUS.Sensors.Buttons.CLEM
+# Meadow.Foundation.mikroBUS.Sensors.CLEM
 
 **MikroElectronika SPI LEM AC Current click board**
 
