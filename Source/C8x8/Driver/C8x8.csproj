@@ -15,12 +15,12 @@
     <PackageId>Meadow.Foundation.mikroBUS.Displays.C8x8</PackageId>
     <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Foundation</RepositoryUrl>
     <PackageTags>Meadow, Meadow.Foundation, MikroBus, Mikroe, MikroElectronika, led, Max7219, display</PackageTags>
-    <Version>0.1.0</Version>
+    <Version>1.6.0.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>MikroElectronika SPI 8x8 Click LED board</Description>
   </PropertyGroup>
   <ItemGroup>
-    <None Include=".\Readme.md" Pack="true" PackagePath=""/>
+    <None Include=".\Readme.md" Pack="true" PackagePath="" />
     <None Include="..\..\icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
