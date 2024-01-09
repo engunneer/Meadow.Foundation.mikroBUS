@@ -1,5 +1,6 @@
 <Project Sdk="Meadow.Sdk/1.1.0">
   <PropertyGroup>
+    <Version>1.7.0</Version>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <Nullable>enable</Nullable>
     <LangVersion>10.0</LangVersion>
@@ -15,16 +16,15 @@
     <PackageId>Meadow.Foundation.mikroBUS.Sensors.Buttons.CACCurrent</PackageId>
     <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Foundation</RepositoryUrl>
 	  <PackageTags>Meadow,Meadow.Foundation,MikroBus,Mikroe,MikroElectronika,AC,current</PackageTags>
-	  <Version>0.1.0</Version>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <Description>MikroElectronika SPI AC Current click board</Description>
   </PropertyGroup>
   <ItemGroup>
-    <None Include=".\Readme.md" Pack="true" PackagePath=""/>
+    <None Include=".\Readme.md" Pack="true" PackagePath="" />
     <None Include="..\..\icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.ICs.ADCs.Mcp3xxx" Version="1.6.0" />
-    <PackageReference Include="Meadow.Foundation.Sensors.Power.CurrentTransducer" Version="1.6.0" />
+    <PackageReference Include="Meadow.Foundation.ICs.ADCs.Mcp3xxx" Version="1.7.0" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Power.CurrentTransducer" Version="1.7.0" />
   </ItemGroup>
 </Project>

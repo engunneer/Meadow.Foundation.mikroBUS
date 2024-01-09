@@ -1,7 +1,6 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.mikroBUS.Sensors;
-using Meadow.Hardware;
 using System;
 using System.Threading.Tasks;
 
@@ -30,7 +29,7 @@ namespace CACCurrent_Sample
                 currentClick = new CACCurrent(Device.Pins.A00.CreateAnalogInputPort(5));
             }
 
-            currentClick.CurrentUpdated += OnCurrentUpdated;
+            currentClick.Updated += OnCurrentUpdated;
             currentClick.StartUpdating();
 
             return Task.CompletedTask;

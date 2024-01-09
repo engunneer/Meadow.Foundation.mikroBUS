@@ -1,5 +1,6 @@
 <Project Sdk="Meadow.Sdk/1.1.0">
   <PropertyGroup>
+    <Version>1.7.0</Version>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <Nullable>enable</Nullable>
     <LangVersion>10.0</LangVersion>
@@ -15,15 +16,14 @@
     <PackageId>Meadow.Foundation.mikroBUS.Sensors.MBus.CMBusMaster</PackageId>
     <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Foundation</RepositoryUrl>
     <PackageTags>Meadow,Meadow.Foundation,MikroBus,Mikroe,MikroElectronika,M-Bus,Meter-Bus</PackageTags>
-    <Version>0.1.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>MikroElectronika Serial M-Bus MikroBus click board</Description>
   </PropertyGroup>
   <ItemGroup>
-    <None Include=".\Readme.md" Pack="true" PackagePath=""/>
+    <None Include=".\Readme.md" Pack="true" PackagePath="" />
     <None Include="..\..\icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.MBus" Version="1.6.0" />
+    <PackageReference Include="Meadow.Foundation.MBus" Version="1.7.0" />
   </ItemGroup>
 </Project>
