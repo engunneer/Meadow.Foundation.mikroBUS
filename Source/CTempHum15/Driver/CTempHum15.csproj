@@ -1,5 +1,6 @@
 <Project Sdk="Meadow.Sdk/1.1.0">
   <PropertyGroup>
+    <Version>1.7.0</Version>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <Nullable>enable</Nullable>
     <LangVersion>10.0</LangVersion>
@@ -15,7 +16,6 @@
     <PackageId>Meadow.Foundation.mikroBUS.Sensors.Atmospheric.CTempHum15</PackageId>
     <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Foundation</RepositoryUrl>
     <PackageTags>Meadow, Meadow.Foundation, MikroBus, Mikroe, MikroElectronika, atmospheric, temperature, humidity</PackageTags>
-    <Version>1.6.0.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>MikroElectronika I2C Temp and Hum 15 temperature and humidity click board</Description>
   </PropertyGroup>

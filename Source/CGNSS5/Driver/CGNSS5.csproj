@@ -1,5 +1,6 @@
 <Project Sdk="Meadow.Sdk/1.1.0">
   <PropertyGroup>
+    <Version>1.7.0</Version>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <Nullable>enable</Nullable>
     <LangVersion>10.0</LangVersion>
@@ -15,7 +16,6 @@
     <PackageId>Meadow.Foundation.mikroBUS.Sensors.Gnss.CGNSS5</PackageId>
     <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Foundation</RepositoryUrl>
     <PackageTags>Meadow,Meadow.Foundation,MikroBus,Mikroe,MikroElectronika,GPS,GNSS,Click,5</PackageTags>
-    <Version>1.6.0.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>MikroElectronika Serial I2C Neo M8 GPS / GNSS 5 MikroBus click board</Description>
   </PropertyGroup>
