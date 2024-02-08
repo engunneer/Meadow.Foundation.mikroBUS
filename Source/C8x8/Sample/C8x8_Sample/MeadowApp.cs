@@ -2,6 +2,7 @@
 using Meadow.Devices;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.mikroBUS.Displays;
+using Meadow.Peripherals.Displays;
 using System;
 
 namespace C8x8_Sample
@@ -11,7 +12,7 @@ namespace C8x8_Sample
     {
         //<!=SNIP=>
 
-        C8x8 c8x8;
+        readonly C8x8 c8x8;
 
         public MeadowApp()
         {
