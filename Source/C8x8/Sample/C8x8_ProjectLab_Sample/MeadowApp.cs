@@ -2,6 +2,7 @@
 using Meadow.Devices;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.mikroBUS.Displays;
+using Meadow.Peripherals.Displays;
 using System;
 
 namespace C8x8_ProjectLab_Sample
@@ -11,8 +12,8 @@ namespace C8x8_ProjectLab_Sample
     {
         //<!=SNIP=>
 
-        C8x8 c8x8;
-        IProjectLabHardware projectLab;
+        readonly C8x8 c8x8;
+        readonly IProjectLabHardware projectLab;
 
         public MeadowApp()
         {
