@@ -1,14 +1,14 @@
-﻿using Meadow.Foundation.Graphics;
-using Meadow.Foundation.Graphics.Buffers;
+﻿using Meadow.Foundation.Graphics.Buffers;
 using Meadow.Foundation.ICs.IOExpanders;
 using Meadow.Hardware;
+using Meadow.Peripherals.Displays;
 
 namespace Meadow.Foundation.mikroBUS.Displays
 {
     /// <summary>
     /// Represents a mikroBUS 16x9 Click board
     /// </summary>
-    public class C16x9 : IGraphicsDisplay
+    public class C16x9 : IPixelDisplay
     {
         /// <summary>
         /// Is31fl3731 object to manage the leds
@@ -72,7 +72,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
             frame = 0;
 
             this.onOffPort = onOffPort;
-            
+
             iS31FL3731 = new Is31fl3731(i2cBus, address);
             iS31FL3731.Initialize();
 
@@ -173,7 +173,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
         {
             PixelBuffer.Fill(clearColor);
 
-            if(updateDisplay)
+            if (updateDisplay)
             {
                 Show();
             }
@@ -200,9 +200,9 @@ namespace Meadow.Foundation.mikroBUS.Displays
             //we'll swap frames every update
             frame = (byte)((frame == 0) ? 1 : 0);
 
-            for(int x = 0; x < Width; x++)
+            for (int x = 0; x < Width; x++)
             {
-                for(int y = 0; y < Height; y++)
+                for (int y = 0; y < Height; y++)
                 {
                     iS31FL3731.SetLedPwm(frame, (byte)(x + y * Width), PixelBuffer.GetPixel(x, y).Color8bppGray);
                 }
