@@ -1,5 +1,10 @@
 <Project Sdk="Meadow.Sdk/1.1.0">
   <PropertyGroup>
+    <Version>1.11.0</Version>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
+    <Nullable>enable</Nullable>
+    <LangVersion>10.0</LangVersion>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageIcon>icon.png</PackageIcon>
     <Authors>Wilderness Labs, Inc</Authors>
@@ -11,16 +16,14 @@
     <PackageId>Meadow.Foundation.mikroBUS.Sensors.Atmospheric.CTempHum15</PackageId>
     <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Foundation</RepositoryUrl>
     <PackageTags>Meadow, Meadow.Foundation, MikroBus, Mikroe, MikroElectronika, atmospheric, temperature, humidity</PackageTags>
-    <Version>0.1.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>MikroElectronika I2C Temp and Hum 15 temperature and humidity click board</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.Displays.MicroGraphics" Version="0.*" />
-    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.Is31fl3731" Version="0.*" />
+    <None Include=".\Readme.md" Pack="true" PackagePath="" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\icon.png" Pack="true" PackagePath="" />
-    <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Sht4x" Version="0.*" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Sht4x" Version="1.12.8" />
   </ItemGroup>
 </Project>

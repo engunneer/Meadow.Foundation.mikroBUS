@@ -1,16 +1,14 @@
-﻿using Meadow.Devices;
-using Meadow.Foundation.Graphics;
-using Meadow.Foundation.Graphics.Buffers;
+﻿using Meadow.Foundation.Graphics.Buffers;
 using Meadow.Foundation.ICs.IOExpanders;
 using Meadow.Hardware;
-using System;
+using Meadow.Peripherals.Displays;
 
 namespace Meadow.Foundation.mikroBUS.Displays
 {
     /// <summary>
     /// Represents a mikroBUS 16x9 Click board
     /// </summary>
-    public class C16x9 : IGraphicsDisplay
+    public class C16x9 : IPixelDisplay
     {
         /// <summary>
         /// Is31fl3731 object to manage the leds
@@ -19,12 +17,20 @@ namespace Meadow.Foundation.mikroBUS.Displays
 
         readonly IDigitalOutputPort onOffPort;
 
-        readonly IDisplayBuffer displayBuffer;
+        /// <summary>
+        /// The buffer to hold the display data
+        /// </summary>
+        public IPixelBuffer PixelBuffer { get; protected set; }
 
         /// <summary>
         /// Color mode of display
         /// </summary>
-        public ColorType ColorMode => ColorType.Format8bppGray;
+        public ColorMode ColorMode => ColorMode.Format8bppGray;
+
+        /// <summary>
+        /// Color mode of display
+        /// </summary>
+        public ColorMode SupportedColorModes => ColorMode.Format8bppGray;
 
         /// <summary>
         /// Width of display in pixels
@@ -66,11 +72,11 @@ namespace Meadow.Foundation.mikroBUS.Displays
             frame = 0;
 
             this.onOffPort = onOffPort;
-            
+
             iS31FL3731 = new Is31fl3731(i2cBus, address);
             iS31FL3731.Initialize();
 
-            displayBuffer = new BufferGray8(Width, Height);
+            PixelBuffer = new BufferGray8(Width, Height);
 
             //enable the display
             this.onOffPort.State = true;
@@ -86,11 +92,10 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <summary>
         /// Creates a CharlieWing driver
         /// </summary>
-        /// <param name="device">Meadow device controller</param>
         /// <param name="onOffPin">IO pin to controller display on/off state</param>
         /// <param name="i2cBus">I2C bus</param>
-        public C16x9(IMeadowDevice device, IPin onOffPin, II2cBus i2cBus) :
-            this(device.CreateDigitalOutputPort(onOffPin), i2cBus, (byte)Is31fl3731.Addresses.Default)
+        public C16x9(IPin onOffPin, II2cBus i2cBus) :
+            this(onOffPin.CreateDigitalOutputPort(), i2cBus, (byte)Is31fl3731.Addresses.Default)
         {
         }
 
@@ -100,7 +105,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="updateDisplay"></param>
         public void Clear(bool updateDisplay = false)
         {
-            displayBuffer.Clear();
+            PixelBuffer.Clear();
 
             if (updateDisplay == true)
             {
@@ -122,7 +127,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
                 { return; }
             }
 
-            displayBuffer.SetPixel(x, y, color);
+            PixelBuffer.SetPixel(x, y, color);
         }
 
         /// <summary>
@@ -143,9 +148,9 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="y">y location in pixels</param>
         public void InvertPixel(int x, int y)
         {
-            var brightness = 255 - displayBuffer.GetPixel(x, y).Color8bppGray;
+            var brightness = 255 - PixelBuffer.GetPixel(x, y).Color8bppGray;
 
-            displayBuffer.SetPixel(x, y, new Color(brightness, brightness, brightness));
+            PixelBuffer.SetPixel(x, y, new Color(brightness, brightness, brightness));
         }
 
         /// <summary>
@@ -154,9 +159,9 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="displayBuffer"></param>
-        public void DrawBuffer(int x, int y, IDisplayBuffer displayBuffer)
+        public void DrawBuffer(int x, int y, IPixelBuffer displayBuffer)
         {
-            this.displayBuffer.WriteBuffer(x, y, displayBuffer);
+            this.PixelBuffer.WriteBuffer(x, y, displayBuffer);
         }
 
         /// <summary>
@@ -166,9 +171,9 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="updateDisplay"></param>
         public void Fill(Color clearColor, bool updateDisplay = false)
         {
-            displayBuffer.Fill(clearColor);
+            PixelBuffer.Fill(clearColor);
 
-            if(updateDisplay)
+            if (updateDisplay)
             {
                 Show();
             }
@@ -184,7 +189,7 @@ namespace Meadow.Foundation.mikroBUS.Displays
         /// <param name="fillColor"></param>
         public void Fill(int x, int y, int width, int height, Color fillColor)
         {
-            displayBuffer.Fill(fillColor, x, y, width, height);
+            PixelBuffer.Fill(x, y, width, height, fillColor);
         }
 
         /// <summary>
@@ -195,11 +200,11 @@ namespace Meadow.Foundation.mikroBUS.Displays
             //we'll swap frames every update
             frame = (byte)((frame == 0) ? 1 : 0);
 
-            for(int x = 0; x < Width; x++)
+            for (int x = 0; x < Width; x++)
             {
-                for(int y = 0; y < Height; y++)
+                for (int y = 0; y < Height; y++)
                 {
-                    iS31FL3731.SetLedPwm(frame, (byte)(x + y * Width), displayBuffer.GetPixel(x, y).Color8bppGray);
+                    iS31FL3731.SetLedPwm(frame, (byte)(x + y * Width), PixelBuffer.GetPixel(x, y).Color8bppGray);
                 }
             }
 
@@ -225,6 +230,17 @@ namespace Meadow.Foundation.mikroBUS.Displays
         public void Show(byte frame)
         {
             iS31FL3731.DisplayFrame(frame);
+        }
+
+        /// <summary>
+        /// Write an external buffer to the display buffer
+        /// </summary>
+        /// <param name="x">X postion to write buffer in pixels</param>
+        /// <param name="y">Y postion to write buffer in pixels</param>
+        /// <param name="buffer">The buffer to write</param>
+        public void WriteBuffer(int x, int y, IPixelBuffer buffer)
+        {
+            PixelBuffer.WriteBuffer(x, y, buffer);
         }
     }
 }

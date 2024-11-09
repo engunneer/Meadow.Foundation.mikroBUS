@@ -1,9 +1,10 @@
-﻿using Meadow.Devices;
-using Meadow.Foundation.Sensors.Buttons;
+﻿using Meadow.Foundation.Sensors.Buttons;
 using Meadow.Foundation.Sensors.Hid;
 using Meadow.Hardware;
+using Meadow.Peripherals.Sensors;
 using Meadow.Peripherals.Sensors.Buttons;
 using System;
+using System.Threading.Tasks;
 
 namespace Meadow.Foundation.mikroBUS.Sensors.Hid
 {
@@ -52,17 +53,25 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Hid
         /// <summary>
         /// Creates a mikroBUS Joystick Click board instance
         /// </summary>
-        /// <param name="device">meadow device</param>
         /// <param name="tstPin">TST pin</param>
         /// <param name="i2cBus">I2C bus</param>
-        public CJoystick(IMeadowDevice device, IPin tstPin, II2cBus i2cBus) : base(i2cBus, (byte)Addresses.Default)
+        public CJoystick(IPin tstPin, II2cBus i2cBus) : base(i2cBus, (byte)Addresses.Default)
         {
-            button = new PushButton(device, tstPin);
+            button = new PushButton(tstPin);
 
             button.PressStarted += (s, e) => PressStarted?.Invoke(s, e);
             button.PressEnded += (s, e) => PressEnded?.Invoke(s, e);
             button.Clicked += (s, e) => Clicked?.Invoke(s, e);
             button.LongClicked += (s, e) => LongClicked?.Invoke(s, e);
+        }
+
+        /// <summary>
+        /// The current button state
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> ISensor<bool>.Read()
+        {
+            return Task.FromResult(State);
         }
     }
 }

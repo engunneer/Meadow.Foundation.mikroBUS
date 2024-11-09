@@ -6,7 +6,7 @@ using System;
 namespace CButton_Sample
 {
     // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
-    public class MeadowApp : App<F7FeatherV2, MeadowApp>
+    public class MeadowApp : App<F7FeatherV2>
     {
         //<!=SNIP=>
 
@@ -16,7 +16,7 @@ namespace CButton_Sample
         {
             Console.WriteLine("Initializing ...");
 
-            ledButton = new CButton(Device, Device.Pins.D03, Device.Pins.D04);
+            ledButton = new CButton(Device.Pins.D03, Device.Pins.D04);
 
             ledButton.StartPulse(TimeSpan.FromSeconds(2), 0.75f, 0);
             ledButton.Clicked += (s, e) =>

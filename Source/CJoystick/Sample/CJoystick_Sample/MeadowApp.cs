@@ -7,7 +7,7 @@ using System.Threading;
 namespace CJoystick_Sample
 {
     // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
-    public class MeadowApp : App<F7FeatherV2, MeadowApp>
+    public class MeadowApp : App<F7FeatherV2>
     {
         //<!=SNIP=>
 
@@ -17,7 +17,7 @@ namespace CJoystick_Sample
         {
             Console.WriteLine("Initializing ...");
 
-            joystick = new CJoystick(Device, Device.Pins.A02, Device.CreateI2cBus());
+            joystick = new CJoystick(Device.Pins.A02, Device.CreateI2cBus());
 
             //loop and read digital position 
             for (int i = 0; i < 100; i++)

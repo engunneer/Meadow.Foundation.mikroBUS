@@ -1,8 +1,6 @@
-﻿using Meadow.Devices;
-using Meadow.Foundation.Leds;
+﻿using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Buttons;
 using Meadow.Hardware;
-using Meadow.Peripherals.Leds;
 using System;
 
 namespace Meadow.Foundation.mikroBUS.Sensors.Buttons
@@ -10,15 +8,15 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Buttons
     /// <summary>
     /// Represents a mikroBUS Button G,R,Y Click board
     /// </summary>
-    public class CButton : PushButton, IPwmLed
+    public class CButton : PushButton
     {
-        readonly IPwmLed pwmLed;
+        readonly PwmLed pwmLed;
 
         /// <summary>
         /// Gets or sets a value indicating whether the LED is on.
         /// </summary>
         /// <value><c>true</c> if is on; otherwise, <c>false</c>.</value>
-        public bool IsOn 
+        public bool IsOn
         {
             get => pwmLed.IsOn;
             set => pwmLed.IsOn = value;
@@ -30,19 +28,18 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Buttons
         public float Brightness
         {
             get => pwmLed.Brightness;
-            set => pwmLed.Brightness = value;
+            set => pwmLed.SetBrightness(value);
         }
 
         /// <summary>
         /// Creates a new CButton object
         /// </summary>
-        /// <param name="device">Meadow device</param>
         /// <param name="ledPin">Led pin</param>
         /// <param name="buttonPin">Button pin</param>
-        public CButton(IMeadowDevice device, IPin ledPin, IPin buttonPin) 
-            : base(device, buttonPin, ResistorMode.InternalPullUp)
+        public CButton(IPin ledPin, IPin buttonPin)
+            : base(buttonPin, ResistorMode.InternalPullUp)
         {
-            pwmLed = new PwmLed(device, ledPin, new Units.Voltage(TypicalForwardVoltage.Green));
+            pwmLed = new PwmLed(ledPin, new Units.Voltage(TypicalForwardVoltage.Green));
         }
 
         /// <summary>
@@ -50,7 +47,7 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Buttons
         /// </summary>
         /// <param name="ledPwmPort">Led PWM port</param>
         /// <param name="buttonInterruptPort">Button interrupt port</param>
-        public CButton(IPwmPort ledPwmPort, IDigitalInputPort buttonInterruptPort)
+        public CButton(IPwmPort ledPwmPort, IDigitalInterruptPort buttonInterruptPort)
             : base(buttonInterruptPort)
         {
             pwmLed = new PwmLed(ledPwmPort, new Units.Voltage(TypicalForwardVoltage.Green));
@@ -75,9 +72,9 @@ namespace Meadow.Foundation.mikroBUS.Sensors.Buttons
         /// <summary>
         /// Stops any running animations
         /// </summary>
-        public void Stop()
+        public void StopAnimation()
         {
-            pwmLed?.Stop();
+            pwmLed?.StopAnimation();
         }
     }
 }
