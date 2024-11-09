@@ -7,26 +7,25 @@ using System.Threading.Tasks;
 namespace CTempHum15_Sample
 {
     // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
-    public class MeadowApp : App<F7FeatherV1, MeadowApp>
+    public class MeadowApp : App<F7CoreComputeV2>
     {
         //<!=SNIP=>
 
-        private Thermo13 _thermo;
+        private CThermo13 _thermo;
 
         public MeadowApp()
         {
             Console.WriteLine("Initializing...");
 
-            _thermo = new Thermo13(Device.CreateI2cBus());
+            _thermo = new CThermo13(Device.CreateI2cBus());
 
-            var consumer = Thermo13.CreateObserver(
+            var consumer = CThermo13.CreateObserver(
                 handler: result =>
                 {
                     Console.WriteLine($"Observer: Temp changed by threshold; new temp: {result.New.Celsius:N2}C, old: {result.Old?.Celsius:N2}C");
                 },
                 filter: result =>
                 {
-                    //c# 8 pattern match syntax. checks for !null and assigns var.
                     if (result.Old is { } old)
                     {
                         return (result.New - old).Abs().Celsius > 0.5;
@@ -46,7 +45,7 @@ namespace CTempHum15_Sample
             _thermo.StartUpdating(TimeSpan.FromSeconds(1));
         }
 
-        async Task ReadConditions()
+        private async Task ReadConditions()
         {
             var conditions = await _thermo.Read();
             Console.WriteLine("Initial Readings:");

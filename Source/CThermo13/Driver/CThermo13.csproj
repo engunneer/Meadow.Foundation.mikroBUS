@@ -21,6 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Bh1900Nux" Version="1.15.0" />
     <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Sht4x" Version="0.*" />
   </ItemGroup>
 </Project>
