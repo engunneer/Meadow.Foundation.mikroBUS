@@ -7,7 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
 	  <ProjectReference Include="..\..\..\..\..\Meadow.Core\Source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
-	  <ProjectReference Include="..\..\..\..\..\Meadow.Foundation.MBus\Source\Devices\RelayMBus\PadPulsM2\Driver\PadPulsM2.csproj" />
+	  <ProjectReference Include="..\..\..\..\..\Meadow.MBus\Source\Devices\RelayMBus\PadPulsM2\Driver\PadPulsM2.csproj" />
 	  <ProjectReference Include="..\..\..\..\..\Meadow.ProjectLab\Source\Meadow.ProjectLab\Meadow.ProjectLab.csproj" />
 	  <ProjectReference Include="..\..\Driver\CMBusMaster.csproj" />
   </ItemGroup>
